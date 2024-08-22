@@ -1,6 +1,6 @@
 {
   "name": "cy_component",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "二次开发, 简化 Ant Design Modal",
   "keywords": [
     "antd",
