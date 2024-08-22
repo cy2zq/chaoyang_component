@@ -1,7 +1,7 @@
 {
   "name": "cy_component",
   "version": "1.0.0",
-  "description": "二次开发, 简化 Ant Design Modal 的使用方式",
+  "description": "二次开发, 简化 Ant Design Modal",
   "keywords": [
     "antd",
     "Ant Design",
