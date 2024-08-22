@@ -1,5 +1,5 @@
 {
-  "name": "chaoyang-component",
+  "name": "chaoyang_component",
   "version": "1.7.0",
   "description": "二次开发, 简化 Ant Desi",
   "keywords": [
@@ -11,13 +11,13 @@
     "echarts",
     "echarts-gl"
   ],
-  "homepage": "https://cy2zq.github.io/cy_component",
+  "homepage": "https://cy2zq.github.io/chaoyang_component",
   "bugs": {
-    "url": "https://github.com/cy2zq/cy_component/issues/new"
+    "url": "https://github.com/cy2zq/chaoyang_component/issues/new"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cy2zq/cy_component.git"
+    "url": "https://github.com/cy2zq/chaoyang_component.git"
   },
   "license": "MIT",
   "author": "cy",
@@ -52,7 +52,7 @@
     }
   },
   "main": "lib/index.js",
-  "unpkg": "dist/cy_component.min.js",
+  "unpkg": "dist/chaoyang_component.min.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [

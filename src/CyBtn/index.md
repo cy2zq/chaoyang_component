@@ -1,7 +1,7 @@
 
 # 发光-css
 ```jsx
-import { CyWoodBtn } from 'cy_component';
+import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -19,7 +19,7 @@ export default () => <div style={{
 # 圣诞-纯css
 
 ```jsx
-import { CyWoodBtn } from 'cy_component';
+import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -37,7 +37,7 @@ export default () => <div style={{
 
 # 木制按钮
 ```jsx
-import { CyWoodBtn } from 'cy_component';
+import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -65,7 +65,7 @@ export default () => <div style={{
 纯css按钮CyTag
 ![girl.png](./girl.png)
 ```jsx
-import { CyTag } from 'cy_component';
+import { CyTag } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -91,7 +91,7 @@ export default () => <div style={{
 # 按钮
 纯css按钮
 ```jsx
-import { CyBtn } from 'cy_component';
+import { CyBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{display:'flex'}}>

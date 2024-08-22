@@ -12,17 +12,17 @@ order: 2
 ## 安装
 
 ```bash
-npm install cy_component --save
+npm install chaoyang_component --save
 ```
 
 ## 使用
 
 ```tsx | pure
 import { Button } from 'antd';
-import Modal from 'cy_component';
+import Modal from 'chaoyang_component';
 
 export default () => (
-  <Modal title="cy_component" trigger={<Button type="primary">Click Me</Button>}>
+  <Modal title="chaoyang_component" trigger={<Button type="primary">Click Me</Button>}>
     I ❤️ antd
   </Modal>
 );

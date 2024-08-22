@@ -11,7 +11,7 @@ group:
 
 ```tsx
 import { Button, Space } from 'antd';
-import Modal from 'cy_component';
+import Modal from 'chaoyang_component';
 
 export default () => (
   <Button

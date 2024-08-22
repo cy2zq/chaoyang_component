@@ -6,7 +6,7 @@
 `如果其他图标库同理`https://react-icons.github.io/react-icons/
 
 ```jsx
-import { CyIcon } from 'cy_component';
+import { CyIcon } from 'chaoyang_component';
 import {Row,Col} from 'antd';
 let list=[
   {
@@ -57,14 +57,14 @@ export default () => <Row gutter={[24,48]}>
 # 图标
 放大缩小
 ```jsx
-import { CyIcon } from 'cy_component';
+import { CyIcon } from 'chaoyang_component';
 
 export default () => <CyIcon style={{transform:'scale(0.5)'}} text={'Facebook'}  iconClass={'fab fa-facebook-f'} />
 ```
 # 图标
 
 ```jsx
-import { CyIcon } from 'cy_component';
+import { CyIcon } from 'chaoyang_component';
 
 export default () => <CyIcon  text={'Facebook'}  iconClass={'fab fa-facebook-f'} />
 ```

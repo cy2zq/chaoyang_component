@@ -1,4 +1,4 @@
-import TreeBtn from 'cy_component/CyBtn/TreeBtn';
+import TreeBtn from 'chaoyang_component/CyBtn/TreeBtn';
 import './wood.less';
 
 function Index(props: any) {

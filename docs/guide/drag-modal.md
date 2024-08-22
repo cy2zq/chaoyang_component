@@ -15,8 +15,8 @@ dddd
 ![girl.png](./girl.png)
 
 ```jsx
-import {ModalBg} from 'cy_component';
-import {CyWoodBtn} from 'cy_component'
+import {ModalBg} from 'chaoyang_component';
+import {CyWoodBtn} from 'chaoyang_component'
 let width=700;
 
 export default () =>

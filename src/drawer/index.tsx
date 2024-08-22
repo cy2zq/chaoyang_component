@@ -18,7 +18,7 @@ export type DrawerContentPropsWithEnhanced<P extends AnyObj = AnyObj> = PropsWit
   CloseCallback
 >;
 
-/** @see [cy_component#Drawer](https://github.com/cy2zq/cy_component/blob/master/src/drawer/index.tsx) */
+/** @see [chaoyang_component#Drawer](https://github.com/cy2zq/chaoyang_component/blob/master/src/drawer/index.tsx) */
 const Drawer = (props: DrawerProps) => {
   const prefixCls = usePrefixCls('drawer', props.prefixCls);
   const [visible, { close }, { trigger, content }, restProps] =

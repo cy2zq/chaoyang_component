@@ -14,7 +14,7 @@ order: 3
  * defaultShowCode: true
  */
 import { Button } from 'antd';
-import Modal from 'cy_component';
+import Modal from 'chaoyang_component';
 
 export default () => <Modal trigger={<Button type="primary">Open Modal</Button>}>I ❤️ antd</Modal>;
 ```
@@ -25,7 +25,7 @@ export default () => <Modal trigger={<Button type="primary">Open Modal</Button>}
 
 ```tsx
 import { Button } from 'antd';
-import Modal from 'cy_component';
+import Modal from 'chaoyang_component';
 import * as React from 'react';
 
 export default () => {

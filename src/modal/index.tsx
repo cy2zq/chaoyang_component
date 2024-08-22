@@ -19,7 +19,7 @@ export type ModalContentPropsWithEnhanced<P extends AnyObj = AnyObj> = PropsWith
   CloseCallback
 >;
 
-/** @see [cy_component#Modal](https://github.com/cy2zq/cy_component/blob/master/src/modal/index.tsx) */
+/** @see [chaoyang_component#Modal](https://github.com/cy2zq/chaoyang_component/blob/master/src/modal/index.tsx) */
 const Modal = (props: ModalProps) => {
   const prefixCls = usePrefixCls('modal', props.prefixCls);
 

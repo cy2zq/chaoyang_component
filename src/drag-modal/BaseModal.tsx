@@ -15,7 +15,7 @@ function BaseModal(props: BaseModalProps) {
   const prefixCls = usePrefixCls('drag-modal', props.prefixCls);
 
   const { attributes, isDragging, listeners, setNodeRef, transform } = useDraggable({
-    id: 'cy_component-draggable-modal',
+    id: 'chaoyang_component-draggable-modal',
   });
 
   const mergeModalRender: typeof modalRender = (rawNode) => (

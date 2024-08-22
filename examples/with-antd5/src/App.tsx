@@ -1,6 +1,9 @@
 import { Button, Divider, Space, Typography, version } from 'antd';
-import type { DrawerContentPropsWithEnhanced, ModalContentPropsWithEnhanced } from 'cy_component';
-import { DragModal, Drawer, EasyAntdModalProvider, Modal } from 'cy_component';
+import type {
+  DrawerContentPropsWithEnhanced,
+  ModalContentPropsWithEnhanced,
+} from 'chaoyang_component';
+import { DragModal, Drawer, EasyAntdModalProvider, Modal } from 'chaoyang_component';
 
 const ModalContent = ({ enhancedAction }: ModalContentPropsWithEnhanced) => (
   <button type="button" onClick={(event) => enhancedAction?.close('onCancel', event)}>
@@ -18,21 +21,21 @@ export default () => (
   <>
     <Typography.Title level={2}>antd version: {version}</Typography.Title>
 
-    <Modal title="cy_component" trigger={<Button type="primary">Modal</Button>}>
+    <Modal title="chaoyang_component" trigger={<Button type="primary">Modal</Button>}>
       I ❤️ antd
     </Modal>
 
     <br />
     <br />
 
-    <Drawer title="cy_component" trigger={<Button type="primary">Drawer</Button>}>
+    <Drawer title="chaoyang_component" trigger={<Button type="primary">Drawer</Button>}>
       I ❤️ antd
     </Drawer>
 
     <br />
     <br />
 
-    <DragModal title="cy_component" trigger={<Button type="primary">DragModal</Button>}>
+    <DragModal title="chaoyang_component" trigger={<Button type="primary">DragModal</Button>}>
       I ❤️ antd
     </DragModal>
 

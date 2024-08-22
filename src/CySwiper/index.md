@@ -38,7 +38,7 @@ styles: [`https://unpkg.com/swiper@11.1.1/swiper-bundle.min.css`],
 ```
 
 ```jsx
-import { CySwiper } from 'cy_component';
+import { CySwiper } from 'chaoyang_component';
 
 export default () => <CySwiper />
 ```
@@ -46,7 +46,7 @@ export default () => <CySwiper />
 # 轮播学习2
 
 ```jsx
-import { CySwiper } from 'cy_component';
+import { CySwiper } from 'chaoyang_component';
 
 export default () => <CySwiper type={'chart'}/>
 ```

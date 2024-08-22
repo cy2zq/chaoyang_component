@@ -8,13 +8,13 @@ order: 5
 
 ## 快速了解 <Badge>1.6.0+</Badge>
 
-在 [issue#18](https://github.com/cy2zq/cy_component/issues/18) 中，遇到需求是内部关闭操作无法执行`onClean/onClose` 方法。想了几个方案都不太满意。最终绕了一圈解决：
+在 [issue#18](https://github.com/cy2zq/chaoyang_component/issues/18) 中，遇到需求是内部关闭操作无法执行`onClean/onClose` 方法。想了几个方案都不太满意。最终绕了一圈解决：
 
 内部调用的地方传入一个需要触发的回调函数名即可。后面参数则是该函数的执行参数。
 
 ```tsx | pure
 import { Button } from 'antd';
-import type { ModalContentPropsWithEnhanced } from 'cy_component';
+import type { ModalContentPropsWithEnhanced } from 'chaoyang_component';
 import React from 'react';
 
 const ContentForm: React.FC<ModalContentPropsWithEnhanced> = ({ enhancedAction }) => {
@@ -34,7 +34,7 @@ export default ContentForm;
 
 ```tsx | pure
 import { Button } from 'antd';
-import type { DrawerContentPropsWithEnhanced } from 'cy_component';
+import type { DrawerContentPropsWithEnhanced } from 'chaoyang_component';
 import React from 'react';
 
 const ContentForm: React.FC<DrawerContentPropsWithEnhanced> = ({ enhancedAction }) => {

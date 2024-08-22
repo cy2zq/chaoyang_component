@@ -126,7 +126,7 @@ importers:
       antd:
         specifier: ^4
         version: 4.24.13(react-dom@18.2.0)(react@18.2.0)
-      cy_component:
+      chaoyang_component:
         specifier: workspace:*
         version: link:../..
       react:
@@ -172,7 +172,7 @@ importers:
       antd:
         specifier: ^5.12.8
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
-      cy_component:
+      chaoyang_component:
         specifier: workspace:*
         version: link:../..
       react:

@@ -1,7 +1,7 @@
 # 雷达图
 雷达-富文本标签（使用问题，统一背景-border，不能写border-top等;背景图如果分割拼接的有间隔；）
 ```jsx
-import { DiyChart } from 'cy_component';
+import { DiyChart } from 'chaoyang_component';
 import img from './rardar.png' 
 let data=[
   {
@@ -445,7 +445,7 @@ export default () => <DiyChart
 # EChart-Bar
 柱状图
 ```jsx
-import { CyBar } from 'cy_component';
+import { CyBar } from 'chaoyang_component';
 
 export default () => <CyBar data={[
   {
@@ -480,7 +480,7 @@ export default () => <CyBar data={[
 # 自定义-EChart
 DIY-自定义option
 ```jsx
-import { DiyChart } from 'cy_component';
+import { DiyChart } from 'chaoyang_component';
 let data=[
   {
     "name": "一月",

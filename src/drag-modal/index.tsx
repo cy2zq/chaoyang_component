@@ -10,7 +10,7 @@ export type DragModalProps = RequireKeys<ModalProps, 'title'>;
 
 const defaultCoordinates: Coordinates = { x: 0, y: 0 };
 
-/** @see [cy_component#DragModal](https://github.com/cy2zq/cy_component/blob/master/src/drag-modal/index.tsx) */
+/** @see [chaoyang_component#DragModal](https://github.com/cy2zq/chaoyang_component/blob/master/src/drag-modal/index.tsx) */
 function DragModal(props: DragModalProps) {
   const [{ x, y }, setCoordinates] = React.useState<Coordinates>(defaultCoordinates);
 

@@ -5,7 +5,7 @@ const isProd = process.env.NODE_ENV === 'production';
 // 不是预览模式 同时是生产环境
 const isProdSite = process.env.PREVIEW !== '1' && isProd;
 
-const name = 'cy_component';
+const name = 'chaoyang_component';
 
 export default defineConfig({
   themeConfig: {

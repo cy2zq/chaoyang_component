@@ -13,8 +13,8 @@
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "@/*": ["src"],
-      "cy_component": ["src"],
-      "cy_component/*": ["src/*", "*"]
+      "chaoyang_component": ["src"],
+      "chaoyang_component/*": ["src/*", "*"]
     }
   }
 }

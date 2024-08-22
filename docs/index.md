@@ -6,7 +6,7 @@ hero:
     - text: 快速上手
       link: /guide
     - text: 查看源码
-      link: https://github.com/cy2zq/cy_component
+      link: https://github.com/cy2zq/chaoyang_component
 
 features:
   - title: 兼容 Ant Design 4 & 5
@@ -38,7 +38,7 @@ features:
   - title: 长期维护
     image: 📅
     description: 长期维护 (欢迎 PR)
-    link: https://github.com/cy2zq/cy_component/pulse
+    link: https://github.com/cy2zq/chaoyang_component/pulse
     row: 6
 ---
 

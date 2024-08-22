@@ -27,7 +27,7 @@ describe('Modal', () => {
 
   it('README.md 中的基础示例正常工作', async () => {
     const { getByRole } = render(
-      <Modal title="cy_component" trigger={<Button type="primary">Click Me</Button>}>
+      <Modal title="chaoyang_component" trigger={<Button type="primary">Click Me</Button>}>
         I ❤️ antd
       </Modal>,
     );
@@ -42,7 +42,7 @@ describe('Modal', () => {
   it('defaultOpen 正常工作', async () => {
     const onClean = vi.fn();
     render(
-      <Modal title="cy_component" defaultOpen onCancel={onClean}>
+      <Modal title="chaoyang_component" defaultOpen onCancel={onClean}>
         I ❤️ antd
       </Modal>,
     );
@@ -57,7 +57,7 @@ describe('Modal', () => {
 
   it('trigger 传入任意可添加 onClick 事件的组件都可以正常工作', async () => {
     const { container } = render(
-      <Modal title="cy_component" trigger={<div id="trigger"></div>}>
+      <Modal title="chaoyang_component" trigger={<div id="trigger"></div>}>
         I ❤️ antd
       </Modal>,
     );
@@ -72,7 +72,7 @@ describe('Modal', () => {
   it('触发器的 onClick 事件会被劫持', async () => {
     const onClick = vi.fn();
     const { getByRole } = render(
-      <Modal title="cy_component" trigger={<Button onClick={onClick}>Click Me</Button>}>
+      <Modal title="chaoyang_component" trigger={<Button onClick={onClick}>Click Me</Button>}>
         I ❤️ antd
       </Modal>,
     );
@@ -87,7 +87,7 @@ describe('Modal', () => {
   it('触发器的 onClick 事件被 Model.onClick 代替, 并且需要手动调用打开', async () => {
     const onClick = vi.fn();
     const { getByRole } = render(
-      <Modal title="cy_component" onClick={onClick} trigger={<Button>Click Me</Button>}>
+      <Modal title="chaoyang_component" onClick={onClick} trigger={<Button>Click Me</Button>}>
         I ❤️ antd
       </Modal>,
     );
@@ -122,7 +122,7 @@ describe('Modal', () => {
     const ref = React.createRef<ModalEnhancedAction>();
 
     render(
-      <Modal title="cy_component" actionRef={ref} trigger={<Button>Click Me</Button>}>
+      <Modal title="chaoyang_component" actionRef={ref} trigger={<Button>Click Me</Button>}>
         I ❤️ antd
       </Modal>,
     );
@@ -177,7 +177,7 @@ describe('Modal', () => {
   it('点击弹窗 footer 的 ok 按钮会触发 onOk， 并且关闭弹窗', async () => {
     const onOk = vi.fn();
     const { getByRole } = render(
-      <Modal title="cy_component" defaultOpen onOk={onOk} destroyOnClose>
+      <Modal title="chaoyang_component" defaultOpen onOk={onOk} destroyOnClose>
         I ❤️ antd
       </Modal>,
     );
@@ -266,8 +266,8 @@ describe('Modal', () => {
       });
     });
 
-    // cy_component actionRef.close() 也可以可选的触发 onCancel
-    describe('cy_component', () => {
+    // chaoyang_component actionRef.close() 也可以可选的触发 onCancel
+    describe('chaoyang_component', () => {
       it('actionRef.close() 不触发', async () => {
         const onClean = vi.fn();
         const ref = React.createRef<ModalEnhancedAction>();

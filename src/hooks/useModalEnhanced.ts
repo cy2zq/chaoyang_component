@@ -45,7 +45,7 @@ export interface ModalEnhancedAction<CloseCB extends FunctionMap = any> {
    * 1. `earlier ~ v1.5.x` 版本中，`close` 类型为 {@link LegacyClose}
    *
    * 2. `v1.6.0+` 版本中，`close` 类型为 {@link EnhancedClose}
-   * 它支持传入回调函数名，以及回调函数的参数。可实现更多的功能。 比如：[#18](https://github.com/cy2zq/cy_component/issues/18)
+   * 它支持传入回调函数名，以及回调函数的参数。可实现更多的功能。 比如：[#18](https://github.com/cy2zq/chaoyang_component/issues/18)
    */
   close: EnhancedClose<CloseCB> | LegacyClose;
   open: () => void;

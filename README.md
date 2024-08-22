@@ -1,4 +1,4 @@
-# cy_component
+# chaoyang_component
 
 <!-- SHIELD GROUP -->
 
@@ -17,24 +17,24 @@
 
 <!-- npm url -->
 
-[npm-image]: http://img.shields.io/npm/v/cy_component.svg?style=flat-square&color=deepgreen&label=latest
-[npm-url]: http://npmjs.org/package/cy_component
-[npm-size]: https://img.shields.io/bundlephobia/minzip/cy_component?color=deepgreen&label=gizpped%20size&style=flat-square
-[npm-size-url]: https://packagephobia.com/result?p=cy_component
+[npm-image]: http://img.shields.io/npm/v/chaoyang_component.svg?style=flat-square&color=deepgreen&label=latest
+[npm-url]: http://npmjs.org/package/chaoyang_component
+[npm-size]: https://img.shields.io/bundlephobia/minzip/chaoyang_component?color=deepgreen&label=gizpped%20size&style=flat-square
+[npm-size-url]: https://packagephobia.com/result?p=chaoyang_component
 
 <!-- coverage -->
 
-[coverage]: https://codecov.io/gh/cy2zq/cy_component/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/cy2zq/cy_component/branch/master
+[coverage]: https://codecov.io/gh/cy2zq/chaoyang_component/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cy2zq/chaoyang_component/branch/master
 
 <!-- Github CI -->
 
-[test-ci]: https://github.com/cy2zq/cy_component/workflows/Test%20CI/badge.svg
-[release-ci]: https://github.com/cy2zq/cy_component/workflows/Release%20CI/badge.svg
-[test-ci-url]: https://github.com/cy2zq/cy_component/actions?query=workflow%3ATest%20CI
-[release-ci-url]: https://github.com/cy2zq/cy_component/actions?query=workflow%3ARelease%20CI
-[download-image]: https://img.shields.io/npm/dm/cy_component.svg?style=flat-square
-[download-url]: https://npmjs.org/package/cy_component
+[test-ci]: https://github.com/cy2zq/chaoyang_component/workflows/Test%20CI/badge.svg
+[release-ci]: https://github.com/cy2zq/chaoyang_component/workflows/Release%20CI/badge.svg
+[test-ci-url]: https://github.com/cy2zq/chaoyang_component/actions?query=workflow%3ATest%20CI
+[release-ci-url]: https://github.com/cy2zq/chaoyang_component/actions?query=workflow%3ARelease%20CI
+[download-image]: https://img.shields.io/npm/dm/chaoyang_component.svg?style=flat-square
+[download-url]: https://npmjs.org/package/chaoyang_component
 
 ## 简介
 
@@ -49,17 +49,17 @@
 推荐使用 `pnpm` 安装
 
 ```bash
-pnpm i cy_component -S
+pnpm i chaoyang_component -S
 ```
 
 ### 使用
 
 ```tsx | pure
 import { Button } from 'antd';
-import Modal from 'cy_component';
+import Modal from 'chaoyang_component';
 
 export default () => (
-  <Modal title="cy_component" trigger={<Button type="primary">Click Me</Button>}>
+  <Modal title="chaoyang_component" trigger={<Button type="primary">Click Me</Button>}>
     I ❤️ antd
   </Modal>
 );
@@ -69,7 +69,7 @@ echart使用-3d饼图
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img.png?raw=true)
 
 ```javascript
-import { CyPie } from 'cy_component';
+import { CyPie } from 'chaoyang_component';
 
 export default () => <CyPie
   style={{
@@ -151,7 +151,7 @@ echart使用-2d饼图
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_1.png?raw=true)
 
 ```javascript
-import { CyPie } from 'cy_component';
+import { CyPie } from 'chaoyang_component';
 
 export default () => <CyPie
   style={{
@@ -233,7 +233,7 @@ export default () => <CyPie
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_2.png?raw=true)
 
 ```javascript
-import { CyWoodBtn } from 'cy_component';
+import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -252,7 +252,7 @@ export default () => <div style={{
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_3.png?raw=true)
 
 ```javascript
-import { CyWoodBtn } from 'cy_component';
+import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -271,7 +271,7 @@ export default () => <div style={{
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_4.png?raw=true)
 
 ```javascript
-import { CyWoodBtn } from 'cy_component';
+import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -296,7 +296,7 @@ export default () => <div style={{
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_5.png?raw=true)
 
 ```javascript
-import { CyTag } from 'cy_component';
+import { CyTag } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{
@@ -322,7 +322,7 @@ export default () => <div style={{
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_6.png?raw=true)
 
 ```javascript
-import { CyBtn } from 'cy_component';
+import { CyBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
 export default () => <div style={{display:'flex'}}>
@@ -407,7 +407,7 @@ export default () => <div style={{display:'flex'}}>
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_7.png?raw=true)
 
 ```javascript
-import { TypewriterCY } from 'cy_component';
+import { TypewriterCY } from 'chaoyang_component';
 
 export default () => <TypewriterCY isRepeat={false} content={<> <p>那一天 我闭目在经殿香雾中 蓦然听见你颂经中的真言</p>
   <p>那一月 我摇动所有的转经筒 不为超度 只为触摸你的指尖 那一年</p>
@@ -426,7 +426,7 @@ export default () => <TypewriterCY isRepeat={false} content={<> <p>那一天 我
 ![demo](https://github.com/cy2zq/cy_common_component/blob/main/shot/img_8.png?raw=true)
 
 ```javascript
-import { CyIcon } from 'cy_component';
+import { CyIcon } from 'chaoyang_component';
 import {Row,Col} from 'antd';
 let list=[
   {
@@ -490,20 +490,20 @@ Copyright © 2024 - present [chaoyang][profile-url]. <br />
 
 <!-- contributors -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/cy2zq/cy_component.svg?style=flat
-[contributors-url]: https://github.com/cy2zq/cy_component/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/cy2zq/chaoyang_component.svg?style=flat
+[contributors-url]: https://github.com/cy2zq/chaoyang_component/graphs/contributors
 
 <!-- forks -->
 
-[forks-shield]: https://img.shields.io/github/forks/cy2zq/cy_component.svg?style=flat
-[forks-url]: https://github.com/cy2zq/cy_component/network/members
+[forks-shield]: https://img.shields.io/github/forks/cy2zq/chaoyang_component.svg?style=flat
+[forks-url]: https://github.com/cy2zq/chaoyang_component/network/members
 
 <!-- stargazers -->
 
-[stargazers-shield]: https://img.shields.io/github/stars/cy2zq/cy_component.svg?style=flat
-[stargazers-url]: https://github.com/cy2zq/cy_component/stargazers
+[stargazers-shield]: https://img.shields.io/github/stars/cy2zq/chaoyang_component.svg?style=flat
+[stargazers-url]: https://github.com/cy2zq/chaoyang_component/stargazers
 
 <!-- issues -->
 
-[issues-shield]: https://img.shields.io/github/issues/cy2zq/cy_component.svg?style=flat
-[issues-url]: https://github.com/cy2zq/cy_component/issues/new/choose
+[issues-shield]: https://img.shields.io/github/issues/cy2zq/chaoyang_component.svg?style=flat
+[issues-url]: https://github.com/cy2zq/chaoyang_component/issues/new/choose

@@ -7,7 +7,7 @@
 ]
 ```
 ```jsx
-import { CyPie } from 'cy_component';
+import { CyPie } from 'chaoyang_component';
 
 export default () => <CyPie
   style={{
@@ -87,7 +87,7 @@ export default () => <CyPie
 # EChart-饼图
 基于Echart
 ```jsx
-import { CyPie2d } from 'cy_component';
+import { CyPie2d } from 'chaoyang_component';
 
 export default () => <CyPie2d
   style={{

@@ -3,7 +3,7 @@
 电报实例
 
 ```jsx
-import { TypewriterCY } from 'cy_component';
+import { TypewriterCY } from 'chaoyang_component';
 
 export default () => <TypewriterCY isRepeat={false} content={<> <p>那一天 我闭目在经殿香雾中 蓦然听见你颂经中的真言</p>
   <p>那一月 我摇动所有的转经筒 不为超度 只为触摸你的指尖 那一年</p>

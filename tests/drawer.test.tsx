@@ -109,8 +109,8 @@ describe('Drawer', () => {
       });
     });
 
-    // cy_component actionRef.close() 也可以可选的触发 onCancel
-    describe('cy_component', () => {
+    // chaoyang_component actionRef.close() 也可以可选的触发 onCancel
+    describe('chaoyang_component', () => {
       it('actionRef.close() 不触发', async () => {
         const onClose = vi.fn();
         const ref = React.createRef<ModalEnhancedAction>();

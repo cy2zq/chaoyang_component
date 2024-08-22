@@ -10,7 +10,7 @@ group: Hooks
 该 Hook 用于获取 EasyAntdModal 的上下文, 通过该 Hook 可以获取到 Modal 的配置
 
 ```tsx
-import { useEasyAntdModal } from 'cy_component';
+import { useEasyAntdModal } from 'chaoyang_component';
 
 export default () => {
   const { triggerProps, contentProps } = useEasyAntdModal();

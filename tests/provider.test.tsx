@@ -18,7 +18,7 @@ describe('Provider', () => {
   it('Provider 可以正常工作', async () => {
     const { getByRole } = render(
       <EasyAntdModalProvider triggerProps="children" contentProps="content">
-        <Modal title="cy_component" content="I ❤️ antd">
+        <Modal title="chaoyang_component" content="I ❤️ antd">
           <Button type="primary">Click Me</Button>
         </Modal>
       </EasyAntdModalProvider>,
