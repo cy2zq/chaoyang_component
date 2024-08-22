@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/cy2zq/chaoyang_component/compare/v1.7.0...v1.8.0) (2024-08-22)
+
+
+### Features
+
+* 🎸 测试feat发布 ([b5385f5](https://github.com/cy2zq/chaoyang_component/commit/b5385f5a0493d37689d1d55e784696901dbb6a05))
+* 🎸 测试feat发布 ([29b218c](https://github.com/cy2zq/chaoyang_component/commit/29b218c940b150411d39a3a8e7199040a6319728))
+* 🎸 测试feat发布 ([399dee9](https://github.com/cy2zq/chaoyang_component/commit/399dee954e935b1130f95011b887533e9bca32a2))
+
 # [1.7.0](https://github.com/cy2zq/chaoyang_component/compare/v1.6.0...v1.7.0) (2024-08-22)
 
 
