@@ -1,31 +1,31 @@
 import { type FC } from 'react';
 import CarouselList from './CarouselList';
+import List from './List';
 import './index.less';
-const Foo: FC<{ type: any }> = (props) => {
+const Foo: FC<{ type: any; data: any }> = (props) => {
   return (
     <div style={props.style}>
-      {props?.type ? (
+      {props?.type == 'chart' ? (
         <div
           style={{
-            width: 477,
+            width: '100%',
             height: 600,
             overflow: 'hidden',
             background: '#04102A',
           }}
         >
-          ddd
-          {/*<List />*/}
+          <List data={props?.data} />
         </div>
       ) : (
         <div
           style={{
-            width: 477,
+            width: '100%',
             height: 600,
             overflow: 'hidden',
             background: '#04102A',
           }}
         >
-          <CarouselList />
+          <CarouselList data={props?.data} />
         </div>
       )}
     </div>

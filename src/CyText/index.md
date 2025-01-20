@@ -1,4 +1,22 @@
-# 文字2222
+# 文字翻牌特效
+
+```jsx
+import { CyFlip } from 'chaoyang_component';
+
+export default () => <CyFlip />
+```
+
+# 文字可编辑
+
+```jsx
+import { CyText1 } from 'chaoyang_component';
+
+export default () => <CyText1 title={'人生若只如初见!'}/>
+```
+
+
+
+# 文字特效
 
 hearts
 
@@ -22,4 +40,6 @@ import { CyText } from 'chaoyang_component';
 
 export default () => <CyText title={'cy_TestCY'} type={'lines'}/>
 ```
+
+
 

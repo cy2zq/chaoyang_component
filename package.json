@@ -145,8 +145,12 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@visactor/vtable": "^1.15.1",
+    "@visactor/vtable-export": "^1.15.1",
+    "@visactor/vtable-search": "^1.15.1",
     "echarts": "^5.5.0",
     "echarts-for-react": "^3.0.2",
+    "mockjs": "^1.1.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-scale-view": "^1.1.2"
   }

@@ -39,14 +39,89 @@ styles: [`https://unpkg.com/swiper@11.1.1/swiper-bundle.min.css`],
 
 ```jsx
 import { CySwiper } from 'chaoyang_component';
+let data = [
+  '人生若只如初见',
+  '何事西风悲画扇',
+  '等闲变却故人心',
+  '却道故人心易变',
+  '骊山语罢清宵半',
+  '泪雨霖铃终不怨',
+  '何如薄幸锦衣郎',
+  '比翼连枝当日愿',
+  '你见，或者不见我',
+  '我就在那里，不悲不喜。',
+  '你念，或者不念我',
+  '情就在那里，不来不去',
+  '你爱或者不爱我，爱就在那里',
+  '不增不减',
+  '你跟，或者不跟我',
+  '我的手就在你的手里',
+  '不舍不弃',
+  '来我怀里',
+  '或者',
+  '让我住进你的心里',
+  '默然相爱，寂静喜欢',
+];
 
-export default () => <CySwiper />
+export default () => <CySwiper data={data}/>
 ```
 
-# 轮播学习2
+# 轮播学习-EChart
 
 ```jsx
 import { CySwiper } from 'chaoyang_component';
+let data=[
+  {
+    name:'示例1',
+    lineValue:10,
+    barValue:20,
+  },
+  {
+    name:'示例2',
+    lineValue:20,
+    barValue:30,
+  },
+  {
+    name:'示例3',
+    lineValue:22,
+    barValue:34,
+  },
+  {
+    name:'示例4',
+    lineValue:11,
+    barValue:2432,
+  },
+  {
+    name:'示例5',
+    lineValue:10,
+    barValue:20,
+  },
+  {
+    name:'示例6',
+    lineValue:20,
+    barValue:30,
+  },
+  {
+    name:'示例7',
+    lineValue:22,
+    barValue:34,
+  },
+  {
+    name:'示例8',
+    lineValue:11,
+    barValue:2432,
+  },
+  {
+    name:'示例9',
+    lineValue:22,
+    barValue:34,
+  },
+  {
+    name:'示例10',
+    lineValue:11,
+    barValue:2432,
+  },
+]
 
-export default () => <CySwiper type={'chart'}/>
+export default () => <CySwiper type={'chart'} data={data}/>
 ```

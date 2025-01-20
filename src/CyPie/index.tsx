@@ -357,24 +357,24 @@ function PieChart(props) {
       chartInstance.setOption(option);
     }
   }, [props.optionsData]);
-  useEffect(() => {
-    const div = divRef.current;
-    // 创建一个ResizeObserver实例并定义回调函数
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { width, height } = entry.contentRect;
-        if (chartRef.current) {
-          chartRef.current.style.transform = `scaleX(${width / 800}) scaleY(${height / 500})`;
-        }
-      }
-    });
-    // 开始监听div的尺寸变化
-    resizeObserver.observe(div);
-    return () => {
-      //组件销毁停止监听
-      resizeObserver.disconnect();
-    };
-  }, []);
+  // useEffect(() => {
+  //   const div = divRef.current;
+  //   // 创建一个ResizeObserver实例并定义回调函数
+  //   const resizeObserver = new ResizeObserver((entries) => {
+  //     for (const entry of entries) {
+  //       const { width, height } = entry.contentRect;
+  //       if (chartRef.current) {
+  //         chartRef.current.style.transform = `scaleX(${width / 800}) scaleY(${height / 500})`;
+  //       }
+  //     }
+  //   });
+  //   // 开始监听div的尺寸变化
+  //   resizeObserver.observe(div);
+  //   return () => {
+  //     //组件销毁停止监听
+  //     resizeObserver.disconnect();
+  //   };
+  // }, []);
   return (
     <div className={styles.container} {...props} ref={divRef}>
       <div ref={chartRef} className={styles.main}></div>

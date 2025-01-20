@@ -1,41 +1,4 @@
-
-# 发光-css
-```jsx
-import { CyWoodBtn } from 'chaoyang_component';
-import {Row,Col} from 'antd'
-
-export default () => <div style={{
-  // background:'white',
-}}
->
-    <CyWoodBtn
-      type={`cy05`}
-      // text={<div style={{width:60,textAlign:'center'}}>测试</div>}
-      text={`心有猛虎，细嗅蔷薇`}
-    />
-</div>
-```
-
-# 圣诞-纯css
-
-```jsx
-import { CyWoodBtn } from 'chaoyang_component';
-import {Row,Col} from 'antd'
-
-export default () => <div style={{
-  // background:'white',
-}}
->
-    <CyWoodBtn
-      type={`cy06`}
-      text={`心有猛虎，细嗅蔷薇`}
-      desc={`7521`}
-    />
-</div>
-```
-
-
-# 木制按钮
+## 木制按钮
 ```jsx
 import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
@@ -60,10 +23,49 @@ export default () => <div style={{
 ```
 
 
+## 发光-css
 
-# button
-纯css按钮CyTag
-![girl.png](./girl.png)
+```jsx
+import { CyWoodBtn } from 'chaoyang_component';
+import {Row,Col} from 'antd'
+
+export default () => <div style={{
+  // background:'white',
+}}
+>
+    <CyWoodBtn
+      type={`cy05`}
+      // text={<div style={{width:60,textAlign:'center'}}>测试</div>}
+      text={`心有猛虎，细嗅蔷薇`}
+    />
+</div>
+```
+
+## 圣诞-纯css
+
+```jsx
+import { CyWoodBtn } from 'chaoyang_component';
+import {Row,Col} from 'antd'
+
+export default () => <div style={{
+  // background:'white',
+}}
+>
+    <CyWoodBtn
+      type={`cy06`}
+      text={`心有猛虎，细嗅蔷薇`}
+      desc={`7521`}
+    />
+</div>
+```
+
+
+
+
+
+
+## 纯css按钮CyTag
+
 ```jsx
 import { CyTag } from 'chaoyang_component';
 import {Row,Col} from 'antd'
@@ -88,8 +90,8 @@ export default () => <div style={{
 ```
 
 
-# 按钮
-纯css按钮
+## 纯css按钮
+
 ```jsx
 import { CyBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'

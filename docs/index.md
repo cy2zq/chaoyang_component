@@ -1,6 +1,6 @@
 ---
 hero:
-  title: chaoYang <b><a target='_blank' href="https://ant.design/components/modal">测试用</a><b>
+  title: chaoYang <b><a target='_blank' href="https://ant.design/components/modal">组件库</a><b>
   description: 传说中的神兽！！！
   actions:
     - text: 快速上手

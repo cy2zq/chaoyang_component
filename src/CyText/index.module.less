@@ -1,0 +1,33 @@
+
+.cy_text1{
+  font-size: 3rem;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1em;
+  color: hsl(190, 80%, 50%);
+  outline: none;
+  -webkit-box-reflect: below 10px linear-gradient(transparent, #0005);
+  animation: text_animate 5s linear alternate infinite;
+}
+
+//文字渐变动画特效
+
+@keyframes text_animate {
+  0%,
+  30%,
+  70% {
+    color: hsl(190, 80%, 50%);
+    text-shadow: none;
+  }
+  20%,
+  40%,
+  80%,
+  100% {
+    color: hsl(0, 0%, 100%);
+    text-shadow: 0 0 5px hsl(190, 80%, 50%),
+    0 0 10px hsl(190, 80%, 50%),
+    0 0 20px hsl(190, 80%, 50%),
+    0 0 40px hsl(190, 80%, 50%);
+  }
+}

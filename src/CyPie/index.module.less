@@ -1,3 +1,8 @@
+@font-face {
+  font-family: cy;
+  src: url('./YouSheBiaoTiHei-2.ttf');
+}
+
 .main{
   width: 800px;
   height: 500px;
@@ -8,4 +13,98 @@
 }
 .container{
   //height: 505px;
+}
+
+.content1{
+  position: relative;
+  height: 300px;
+  background: #03071F;
+  .progress{
+    width: 100%;
+    height: 100%;
+    animation: rotate 14s linear infinite;
+  }
+  .count1{
+    position: absolute;
+    left: 154px;
+    bottom: 8px;
+    width: 261px;
+    height: 261px;
+    background: url("./img/left6.png");
+    background-size: cover;
+    animation: rotate 3s linear infinite;
+  }
+  .count2{
+    position: absolute;
+    left: 154px;
+    bottom: 8px;
+    width: 261px;
+    height: 261px;
+    background: url("./img/left7.png");
+    background-size: cover;
+    animation: rotate1 6s linear infinite;
+  }
+  .count3{
+    position: absolute;
+    left: 154px;
+    bottom: 8px;
+    width: 261px;
+    height: 261px;
+  }
+  .count4{
+    font-family: cy;
+    position: absolute;
+    left: 154px;
+    width: 261px;
+    height: 261px;
+    text-align: center;
+    top:120px;
+    font-size: 34px;
+    color: white;
+  }
+  .count5{
+    position: absolute;
+    left: 563px;
+    width: 594px;
+    height: 150px;
+    text-align: center;
+    top: 90px;
+    .col{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 592px;
+      height: 50px;
+      //background: url("@/assets/images/zhaocai/new3.png");
+      background-size: cover;
+      margin-bottom: 36px;
+      font-size: 28px;
+      font-family: cy;
+      .color{
+        width: 10px;
+        height: 10px;
+        //border-radius: 10px;
+        background: red;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }

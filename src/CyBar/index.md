@@ -155,7 +155,7 @@ let option = {
   graphic: {
     type: "image",
     id: "myImage",
-    left: "225",
+    left: "32%",
     top: "60",
     z: -100,
     bounding: "raw",

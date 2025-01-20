@@ -7,36 +7,8 @@ import { Progress } from 'antd';
 import { useEffect } from 'react';
 import styles from './index.module.less';
 
-let data = [
-  '人生若只如初见',
-  '何事西风悲画扇',
-  '等闲变却故人心',
-  '却道故人心易变',
-  '骊山语罢清宵半',
-  '泪雨霖铃终不怨',
-  '何如薄幸锦衣郎',
-  '比翼连枝当日愿',
-  '你见，或者不见我',
-  '我就在那里，不悲不喜。',
-  '你念，或者不念我',
-  '情就在那里，不来不去',
-  '你爱或者不爱我，爱就在那里',
-  '不增不减',
-  '你跟，或者不跟我',
-  '我的手就在你的手里',
-  '不舍不弃',
-  '来我怀里',
-  '或者',
-  '让我住进你的心里',
-  '默然相爱，寂静喜欢',
-];
-let data1 = [
-  {
-    name: 'jdslfjsldf',
-    value: 30,
-  },
-];
-const CarouselList = () => {
+const CarouselList = (props) => {
+  const { data } = props;
   const twoColors = {
     '0%': 'skyblue',
     // "100%": "#00D5FF",
@@ -90,11 +62,10 @@ const CarouselList = () => {
           {data?.map((item) => {
             var randomInt = Math.floor(Math.random() * 101);
 
-            let left = (randomInt * 22) / 5 + 16;
+            let left = (randomInt * 48) / 5 + 21;
             return (
               <div
                 className="swiper-slide"
-                // style={{ background: "red", height: 50 }}
                 style={{
                   padding: '16px 0 16px 24px',
                 }}
@@ -125,7 +96,7 @@ const CarouselList = () => {
                   <span style={{ color: '#11d8ff' }}>{randomInt}%</span>
                 </div>
                 <Progress
-                  style={{ width: 470 }}
+                  style={{ width: '100%' }}
                   strokeColor={twoColors}
                   percent={randomInt}
                   format={() => null}

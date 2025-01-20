@@ -11,18 +11,18 @@ class Index extends Component {
   componentDidMount() {
     const div = this.divRef;
     let main = this.mainRef;
-    // 创建一个ResizeObserver实例并定义回调函数
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { width, height } = entry.contentRect;
-        main.style.transform = `scale(1.1)`;
-        console.log(main, 19);
-        // main.style.transform = `scaleX(${width / 800}) scaleY(${height / 500})`;
-      }
-    });
-    // 开始监听div的尺寸变化
-    resizeObserver.observe(div);
-    this.resizeObserver = resizeObserver;
+    // // 创建一个ResizeObserver实例并定义回调函数
+    // const resizeObserver = new ResizeObserver((entries) => {
+    //   for (const entry of entries) {
+    //     const { width, height } = entry.contentRect;
+    //     main.style.transform = `scale(1.1)`;
+    //     console.log(main, 19);
+    //     // main.style.transform = `scaleX(${width / 800}) scaleY(${height / 500})`;
+    //   }
+    // });
+    // // 开始监听div的尺寸变化
+    // resizeObserver.observe(div);
+    // this.resizeObserver = resizeObserver;
     const myChart = this.echartRef.getEchartsInstance();
     // 默认高亮
     let index = 0; // 高亮索引
@@ -52,7 +52,7 @@ class Index extends Component {
 
   componentWillUnmount() {
     //卸载移除监听
-    this.resizeObserver.disconnect();
+    // this.resizeObserver.disconnect();
   }
 
   getOption() {
@@ -210,7 +210,6 @@ class Index extends Component {
           ref={(e) => {
             this.mainRef = e;
           }}
-          {...this.props}
         >
           <ReactEcharts
             onEvents={onEvents}
@@ -219,7 +218,6 @@ class Index extends Component {
             }}
             option={this.getOption()}
             theme="Imooc"
-            {...this.props}
           />
         </div>
       </div>

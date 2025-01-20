@@ -1,3 +1,15 @@
+# 自定义环形图2
+```jsx
+import { CyPieRotate } from 'chaoyang_component';
+import {Row,Col} from 'antd'
+
+export default ()=>{
+
+  return <CyPieRotate data={27} title={'男生占比'}/>
+}
+
+```
+
 # 饼图3d
 基于Echart和echart-gl-
 ```javascript
@@ -84,6 +96,83 @@ export default () => <CyPie
   },
 ]}/>
 ```
+
+# 自定义环形图
+基于svg
+```jsx
+import { CyPieSvg } from 'chaoyang_component';
+import {Row,Col} from 'antd'
+
+export default ()=>{
+  let arr=[
+    {
+      name:"类型1",
+      value:20,
+      color:'#13BCFF'
+    },
+    {
+      name:"类型2",
+      value:46,
+      color:'#00F9FF'
+    },
+    {
+      name:"类型3",
+      value:36,
+      color:'#ffba37'
+    },
+    {
+      name:"类型4",
+      value:76,
+      color:'red'
+    },
+  ]
+  return <Row gutter={[24,24]}>
+    {
+      arr.map((item,index)=>{
+        return <Col span={6}>
+                  <CyPieSvg
+                    title={
+                      <span  
+                        style={{
+                          fontSize: 28,
+                          fontWeight: 700,
+                          color: "#D8F7FF",
+                          textShadow: `0px 4px 8px ${item?.color}`,  
+                        }}>
+                        {item?.value}
+                      </span>
+                    }
+                    name={<span
+                            style={{
+                              fontSize: 18,
+                              fontWeight: 500,
+                              color: "#D8F7FF",
+                            }}>
+                        {item?.name}
+                      </span>}
+                    mainColor_cy={ item?.color}
+                    percent={item?.value}
+                    scale={"1.2"}
+                    width={247}
+                    height={118}
+                  />
+               </Col>
+      })
+    }
+  </Row>
+}
+
+```
+
+
+
+
+
+
+
+
+
+
 # EChart-饼图
 基于Echart
 ```jsx
@@ -154,5 +243,7 @@ export default () => <CyPie2d
   },
 ]}/>
 ```
+
+
 
 
