@@ -38,6 +38,10 @@ function Index(props) {
       downloadExcel(await exportVTableToExcel(tableInstance, excelOption), title);
     }
   };
+
+  //不知道为何这里不能用async
+  // Transforming async generator functions to the configured target environment ("chrome80", "es2015") is not supported yet
+
   useEffect(() => {
     const option = {
       records: dataSource || [{ id: 'cytest' }],

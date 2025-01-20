@@ -33,7 +33,6 @@
 
 ## 基本表格
 
-
 ```jsx
 import {useRef} from 'react'
 import { CyTable} from 'chaoyang_component';
@@ -41,22 +40,24 @@ import {Row,Col,Button} from 'antd'
 var Mock = require('mockjs')
 export default ()=>{
   let ref=useRef(null);
-  var dataSource = Mock.mock({
-    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-    'list|300-11800': [{
-      // 属性 id 是一个自增数，起始值为 1，每次增 1
-      'id|+1': 1,
-      'name': '@cname',
-      "sex|1": ["男","女"],
-      "age|1-100": 100,
-      "address": "@county(true)",
-      "date": "@date",
-      "status|1": ["启用","禁用"],
-      "remark": "@cparagraph(1, 3)",
-      "img": "@image(200x100, @color)",
-      "score": "@integer(0, 100)"
-    }]
-  })
+  var dataSource =
+    Mock.mock({
+// 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+      'list|300-11800': [{
+// 属性 id 是一个自增数，起始值为 1，每次增 1
+        'id|+1': 1,
+        'name': '@cname',
+        "sex|1": ["男","女"],
+        "age|1-100": 100,
+        "address": "@county(true)",
+        "date": "@date",
+        "status|1": ["启用","禁用"],
+        "remark": "@cparagraph(1, 3)",
+        "img": "@image(200x100, @color)",
+        "score": "@integer(0, 100)"
+      }]
+})
+ 
 
   let columns = [
     {
@@ -107,14 +108,12 @@ export default ()=>{
     }
   
   ];
-
-  console.log(ref,58)
-
   return <div>
             <Button 
-              onClick={()=>{
-                ref.current.exportExcel('晁阳测试')
-              }}>导出</Button>
+              onClick={async ()=>{
+                ref.current.downloadExcel('晁阳测试')
+              }}
+            >导出</Button>
             <CyTable
               style={{
                 width: '100%',
@@ -127,11 +126,10 @@ export default ()=>{
                 frozenColCount:3,
                 bottomFrozenRowCount:1
               }}
-              onMount={(tableInstance,exportExcel)=>{
-                console.log(tableInstance)
+              onMount={(tableInstance,
+                        downloadExcel)=>{
                 ref.current={
-                  tableInstance,
-                  exportExcel
+                  tableInstance,downloadExcel
                 }
               }}
             />

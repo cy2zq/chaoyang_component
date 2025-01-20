@@ -40,4 +40,5 @@ export default defineConfig({
   html2sketch: {},
   mfsu: false,
   outputPath: '.doc',
+  jsMinifier: 'terser',
 });
