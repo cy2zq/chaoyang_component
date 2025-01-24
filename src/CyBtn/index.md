@@ -1,16 +1,20 @@
+---
+title: 按钮
+nav: 组件
+group:
+  title: 通用
+
+order: 0
+---
+
 ## 木制按钮
 ```jsx
 import { CyWoodBtn } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
-export default () => <div style={{
-  // padding:24,
-  // background:'white',
-}}
->
+export default () => <div>
  <Row gutter={[48,24]}>
    {
-     
      new Array(4)?.fill('cy')?.map((item,index)=> <Col span={6} key={index}>
        <CyWoodBtn 
          type={`cy0${index+1}`} 
@@ -72,16 +76,15 @@ import {Row,Col} from 'antd'
 
 export default () => <div style={{
   padding:24,
-  background:'url(./girl.png)', 
   // background:'radial-gradient(circle at 50% 0%,rgb(67, 54, 74) 16.4%,rgb(47, 48, 67) 68.2%,rgb(27, 23, 36) 99.1%)'
 }}>
  <Row gutter={[48,24]}>
    {
      
-     new Array(45)?.fill('cy')?.map((item,index)=> <Col span={6} key={index}>
+     [45,35,14,1,2,3,18,19,20,34,35,36]?.map((item,index)=> <Col span={6} key={index}>
        <CyTag 
-         type={`cy0${index+1}`} 
-         text={`cy0${index+1}`}
+         type={`cy0${item}`} 
+         text={`cy0${item}`}
        />
      </Col>)
    }

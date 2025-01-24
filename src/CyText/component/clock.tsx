@@ -50,6 +50,12 @@ class FlipClock extends Component {
     this.run();
   }
 
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+    clearInterval(this.timer);
+    this.timer = null;
+  }
+
   // 初始化数字
   init() {
     let str = this.getData();

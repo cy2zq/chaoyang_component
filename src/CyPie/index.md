@@ -1,5 +1,15 @@
-# 自定义环形图2
+---
+title: 饼图
+group:
+  title: 数据展示
+order: 5
+---
+
+
 ```jsx
+/**
+ * background: '#0a264d'
+ */
 import { CyPieRotate } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
@@ -19,13 +29,13 @@ export default ()=>{
 ]
 ```
 ```jsx
+/**
+ * background: '#0a264d'
+ */
 import { CyPie } from 'chaoyang_component';
 
 export default () => <CyPie
-  style={{
-    background:'#0a264d',
- 
-  }}
+
   titleStyle={{
     left: 180,
     top: 220,
@@ -100,6 +110,9 @@ export default () => <CyPie
 # 自定义环形图
 基于svg
 ```jsx
+/**
+ * background: '#03071F'
+ */
 import { CyPieSvg } from 'chaoyang_component';
 import {Row,Col} from 'antd'
 
@@ -176,6 +189,9 @@ export default ()=>{
 # EChart-饼图
 基于Echart
 ```jsx
+/**
+ * background: '#03071F'
+ */
 import { CyPie2d } from 'chaoyang_component';
 
 export default () => <CyPie2d

@@ -218,6 +218,7 @@ class Index extends Component {
             }}
             option={this.getOption()}
             theme="Imooc"
+            style={{ minWidth: 700 }}
           />
         </div>
       </div>

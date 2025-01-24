@@ -1,11 +1,18 @@
-# 电报
-
-电报实例
+---
+title: 电报
+group:
+  title: 通用
+order: 3
+---
 
 ```jsx
-import { TypewriterCY } from 'chaoyang_component';
+/**
+ * title: 电报
+ * description:  `demo` 
+ */
+import { CyTypewriter } from 'chaoyang_component';
 
-export default () => <TypewriterCY isRepeat={false} content={<> <p>那一天 我闭目在经殿香雾中 蓦然听见你颂经中的真言</p>
+export default () => <CyTypewriter isRepeat={false} content={<> <p>那一天 我闭目在经殿香雾中 蓦然听见你颂经中的真言</p>
   <p>那一月 我摇动所有的转经筒 不为超度 只为触摸你的指尖 那一年</p>
   <p>
     我磕长头匍匐在山路 不为觐见 只为贴着你的温暖 那一世 我转山转水转佛塔

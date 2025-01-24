@@ -73,7 +73,6 @@ const BarList = (props) => {
         type: 'category',
         data: xData, //数据
         axisLabel: {
-          color: 'white',
           formatter: (value) => {
             let a = value.slice(0, sliceLength);
             let b = value.slice(sliceLength);
@@ -96,7 +95,6 @@ const BarList = (props) => {
             show: false, //不显示
           },
           axisLabel: {
-            color: 'white',
             formatter: showLabel,
             fontSize: 26,
           },
@@ -119,7 +117,6 @@ const BarList = (props) => {
           },
           axisLabel: {
             formatter: '{value}',
-            color: 'white',
             fontSize: 26,
           },
           splitLine: {
@@ -243,14 +240,7 @@ const BarList = (props) => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return (
-    <ReactEcharts
-      ref={ref}
-      option={option}
-      theme="Imooc"
-      style={{ height: props.height || '550px' }}
-    />
-  );
+  return <ReactEcharts ref={ref} option={option} style={{ height: props.height || '550px' }} />;
 };
 
 export default BarList;

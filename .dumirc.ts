@@ -40,5 +40,5 @@ export default defineConfig({
   html2sketch: {},
   mfsu: false,
   outputPath: '.doc',
-  jsMinifier: 'terser',
+  jsMinifier: 'terser', //支持async异步的build
 });

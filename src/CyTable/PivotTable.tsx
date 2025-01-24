@@ -60,7 +60,7 @@ function Index(props) {
           {
             state: 'frozen',
             xSplit: 3,
-            ySplit: 1,
+            ySplit: 2,
           },
         ];
         worksheet.name = 'cy';
@@ -79,52 +79,130 @@ function Index(props) {
 
   useEffect(() => {
     const option = {
-      records: dataSource || [{ id: 'cytest' }],
-      rows: [],
-      columns: items
-        ?.filter((e) => e?.checked)
-        ?.map((item) => {
-          if (item?.summaryFun) {
-            let type = item?.summaryFunType || 'SUM';
-            return {
-              ...item,
-              aggregation: {
-                aggregationType: VTable.TYPES.AggregationType[type],
-                formatFun: item?.summaryFun,
-              },
-            };
-          }
-          return {
-            ...item,
-          };
-        }),
+      records: dataSource || [
+        { Category: '数量', 城市: '淮北', 项目数: 100, 季度: 1, 年份: 2023 },
+        { Category: '数量', 城市: '淮北', 项目数: 101, 季度: 2 },
+        { Category: '数量', 城市: '淮北', 项目数: 101, 季度: 3 },
+        { Category: '数量', 城市: '淮北', 项目数: 101, 季度: 4 },
+
+        { Category: '数量', 城市: '徐州', 项目数: 100, 季度: 1 },
+        { Category: '数量', 城市: '徐州', 项目数: 101, 季度: 2 },
+        { Category: '数量', 城市: '徐州', 项目数: 101, 季度: 3 },
+        { Category: '数量', 城市: '徐州', 项目数: 101, 季度: 4 },
+      ],
+
+      indicators: [
+        {
+          indicatorKey: '科技创新',
+          title: '科技创新',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '人才引进',
+          title: '人才引进',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '高新技术产业',
+          title: '高新技术产业',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '交通网络',
+          title: '交通网络',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '供水供电',
+          title: '供水供电',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '公共设施',
+          title: '公共设施',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '通信网络',
+          title: '通信网络',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '人均GDP',
+          title: '人均GDP',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '就业率‌',
+          title: '就业率‌',
+          width: 'auto',
+        },
+
+        {
+          indicatorKey: '产业结构',
+          title: '产业结构',
+          width: 'auto',
+        },
+
+        {
+          indicatorKey: '文化教育',
+          title: '文化教育',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '医疗水平',
+          title: '医疗水平',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '社会福利',
+          title: '社会福利',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '治安指数',
+          title: '治安指数',
+          width: 'auto',
+        },
+
+        {
+          indicatorKey: '空气质量',
+          title: '空气质量',
+          width: 'auto',
+        },
+
+        {
+          indicatorKey: '水质指数',
+          title: '水质指数',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '噪音污染',
+          title: '噪音污染',
+          width: 'auto',
+        },
+        {
+          indicatorKey: '‌交通拥堵指数',
+          title: '‌交通拥堵指数',
+          width: 'auto',
+        },
+
+        {
+          indicatorKey: '‌生态保护‌',
+          title: '‌生态保护‌',
+          width: 'auto',
+        },
+      ],
+      corner: {
+        titleOnDimension: 'row',
+        headerStyle: {
+          textStick: true,
+        },
+      },
+
       overscrollBehavior: 'none',
       widthMode: 'standard',
-      // pagination: {
-      //   perPageCount: 100,
-      //   currentPage: 1,
-      // },
-      aggregation(args) {
-        if (args.col === 0) {
-          return [
-            {
-              aggregationType: VTable.TYPES.AggregationType.NONE,
-              showOnTop: false,
-              formatFun(value) {
-                return '汇总';
-              },
-            },
-          ];
-        }
-        return null;
-      },
-      // theme: VTable.themes.DEFAULT.extends({
-      //   bottomFrozenStyle: {
-      //     // bgColor: "#ECF1F5",
-      //     borderLineWidth: [1, 1, 1, 1],
-      //     // borderColor: ["gray"],
-      //   },
-      // }),
+
       keyboardOptions: {
         moveEditCellOnArrowKeys: true,
         copySelected: true,
@@ -137,25 +215,13 @@ function Index(props) {
         highlightMode: 'cross', // 可以配置为'cross' 或者 'row' 或者 'column'
       },
 
-      rowSeriesNumber: {
-        title: '序号',
-        dragOrder: true,
-        width: 'auto',
-        // headerStyle: {
-        //   color: 'black',
-        // },
-        // style: {
-        //   color: 'black',
-        // },
-      },
-
       tooltip: {
         isShowOverflowTextTooltip: true, //溢出文本提示
       },
       theme: VTable.themes[theme],
       ...options,
     };
-    tableInstance = new VTable.ListTable(ref.current, option);
+    tableInstance = new VTable.PivotTable(ref.current, option);
 
     // const { CLICK_CELL } = VTable.ListTable.EVENT_TYPE;
     // tableInstance.on(CLICK_CELL, (...args) => console.log(CLICK_CELL, args));

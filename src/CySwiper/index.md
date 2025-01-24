@@ -1,3 +1,10 @@
+---
+title: 走马灯
+group:
+  title: 其他
+order: 1
+---
+
 # 轮播学习
 `版本链接：版本号可改`https://unpkg.com/swiper@11/swiper-bundle.min.js
 styles: [`https://unpkg.com/swiper@11.1.1/swiper-bundle.min.css`],
@@ -38,6 +45,12 @@ styles: [`https://unpkg.com/swiper@11.1.1/swiper-bundle.min.css`],
 ```
 
 ```jsx
+/**
+ * title: demo swiper
+ * background: '#04102A'
+ *
+ */
+
 import { CySwiper } from 'chaoyang_component';
 let data = [
   '人生若只如初见',
@@ -63,7 +76,7 @@ let data = [
   '默然相爱，寂静喜欢',
 ];
 
-export default () => <CySwiper data={data}/>
+export default () => <CySwiper data={data} height={600}/>
 ```
 
 # 轮播学习-EChart

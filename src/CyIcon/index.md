@@ -1,3 +1,10 @@
+---
+title: 图标
+group:
+  title: 通用
+order: 2
+---
+
 # 图标
 `版本链接：版本号可改6.5.2`https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css
 

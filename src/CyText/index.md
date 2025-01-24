@@ -1,3 +1,10 @@
+---
+title: 文字
+group:
+  title: 通用
+order: 1
+---
+
 # 文字翻牌特效
 
 ```jsx
