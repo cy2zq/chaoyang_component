@@ -33,6 +33,15 @@ export default defineConfig({
         document.head.appendChild(link);
       })();
     `,
+    {
+      src: `https://www.googletagmanager.com/gtag/js?id=G-FQJ1Q67QZY`,
+      async: true,
+    },
+    ` window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQJ1Q67QZY');`
   ],
 
   base: isProdSite ? `/${name}/` : '/',
