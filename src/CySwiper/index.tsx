@@ -14,7 +14,7 @@ const Foo: FC<{ type: any; data: any }> = (props) => {
             overflow: 'hidden',
           }}
         >
-          <List data={props?.data} />
+          <List data={props?.data} style={props.style} />
         </div>
       ) : (
         <div

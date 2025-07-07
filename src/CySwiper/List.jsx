@@ -240,7 +240,7 @@ const BarList = (props) => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <ReactEcharts ref={ref} option={option} style={{ height: props.height || '550px' }} />;
+  return <ReactEcharts ref={ref} option={option} style={props.style} />;
 };
 
 export default BarList;

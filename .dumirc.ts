@@ -3,18 +3,35 @@ import { homepage } from './package.json';
 
 const isProd = process.env.NODE_ENV === 'production';
 // 不是预览模式 同时是生产环境
-const isProdSite = process.env.PREVIEW !== '1' && isProd;
-
+// const isProdSite = process.env.PREVIEW !== '1' && isProd;
+const isProdSite = false;
 const name = 'chaoyang_component';
 
 export default defineConfig({
   themeConfig: {
     name,
     github: homepage,
+    footer: 'Copyright © chaoyang',
+    logo: 'https://images.cy-zq.cn/logo/Google/cy11.png',
   },
-  styles: [`https://unpkg.com/swiper@11.1.1/swiper-bundle.min.css`],
+  styles: [`/css/swiper-bundle.min.css`],
   headScripts: [
-    'https://code.jquery.com/jquery-3.7.1.js',
+    {
+      src: `/js/echarts.min.js`,
+      defer: true,
+    },
+    {
+      src: `/js/swiper-bundle.min.js`,
+      defer: true,
+    },
+    {
+      src: `/js/echarts-gl.min.js`,
+      defer: true,
+    },
+    {
+      src: `/js/jquery-3.7.1.js`,
+      defer: true,
+    },
     `if (window.$) {
       console.log('jQuery is already bound to window object.');
     } else {
@@ -22,9 +39,6 @@ export default defineConfig({
       window.$ = window.jQuery;
       console.log('jQuery has been bound to window object.');
     }`,
-    `https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js`,
-    `https://unpkg.com/swiper@11/swiper-bundle.min.js`,
-    `https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js`,
     `
       (function() {
         const link = document.createElement('link');
@@ -41,13 +55,13 @@ export default defineConfig({
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-FQJ1Q67QZY');`
+  gtag('config', 'G-FQJ1Q67QZY');`,
   ],
 
   base: isProdSite ? `/${name}/` : '/',
   publicPath: isProdSite ? `/${name}/` : '/',
   html2sketch: {},
   mfsu: false,
-  outputPath: '.doc',
+  outputPath: 'myComponent',
   jsMinifier: 'terser', //支持async异步的build
 });
