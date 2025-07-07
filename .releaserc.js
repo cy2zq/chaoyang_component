@@ -1,9 +1,14 @@
 module.exports = {
   release: {
-    branches: ['main','master','beta'],
+    branches: ['main', 'master', 'beta'],
   },
   plugins: [
-    '@semantic-release/commit-analyzer',
+    [
+      '@semantic-release/commit-analyzer',
+      {
+        preset: 'angular',
+      },
+    ],
     '@semantic-release/release-notes-generator',
     [
       '@semantic-release/changelog',
