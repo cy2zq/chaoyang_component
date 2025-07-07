@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/cy2zq/chaoyang_component/compare/v1.11.0...v1.12.0) (2025-07-07)
+
+
+### Features
+
+* **API:** Add a new method to the public API ([e0c1e74](https://github.com/cy2zq/chaoyang_component/commit/e0c1e7485f0b45802b4c4f0d2f404b7a7f3adfd6))
+
 # [1.11.0](https://github.com/cy2zq/chaoyang_component/compare/v1.10.0...v1.11.0) (2025-07-07)
 
 
