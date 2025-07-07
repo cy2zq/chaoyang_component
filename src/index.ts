@@ -42,7 +42,7 @@ export {
 
 export default Modal;
 
-export * as AntdMobile from './mobile';
+// export * as AntdMobile from './mobile';
 export const Antd = {
   Modal,
   Drawer,
