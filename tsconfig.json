@@ -1,8 +1,7 @@
 {
-  "include": [
-    "src", "tests", ".dumirc.ts", "*.ts", "docs"],
+  "include": ["src", "tests", ".dumirc.ts", "*.ts", "docs"],
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -10,6 +9,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "types": ["vitest/globals"],
+    "noImplicitAny": false,
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "@/*": ["src"],
