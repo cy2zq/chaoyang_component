@@ -1,3 +1,11 @@
+# [1.13.0](https://github.com/cy2zq/chaoyang_component/compare/v1.12.0...v1.13.0) (2025-07-16)
+
+
+### Features
+
+* 🎸 测试feat发布 ([66df73e](https://github.com/cy2zq/chaoyang_component/commit/66df73e9e43995641f9765b2046fcaf97559ab7f))
+* 🎸 测试拖拽发布 ([8e54ffc](https://github.com/cy2zq/chaoyang_component/commit/8e54ffcdb80042008b08756dd22d95295ce7d658))
+
 # [1.12.0](https://github.com/cy2zq/chaoyang_component/compare/v1.11.0...v1.12.0) (2025-07-07)
 
 
