@@ -35,6 +35,8 @@ lambda/mock/index.js
 .dumi/tmp*
 .doc
 
+myComponent/
+
 
 
 
