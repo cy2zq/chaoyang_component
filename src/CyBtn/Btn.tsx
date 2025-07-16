@@ -30,9 +30,9 @@ function Btn(props: any) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M14 5l7 7m0 0l-7 7m7-7H3"
           ></path>
         </svg>
@@ -46,9 +46,9 @@ function Btn(props: any) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M14 5l7 7m0 0l-7 7m7-7H3"
           ></path>
         </svg>
@@ -109,9 +109,9 @@ function Btn(props: any) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
           ></path>
         </svg>
@@ -135,9 +135,9 @@ function Btn(props: any) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M14 5l7 7m0 0l-7 7m7-7H3"
           ></path>
         </svg>
@@ -189,8 +189,8 @@ function Btn(props: any) {
             <path
               d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
               fill="#FFF"
-              fill-rule="nonzero"
-              fill-opacity=".1"
+              fillRule="nonzero"
+              fillOpacity=".1"
             ></path>
           </svg>
         </span>
@@ -203,8 +203,8 @@ function Btn(props: any) {
             <path
               d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
               fill="#FFF"
-              fill-rule="nonzero"
-              fill-opacity=".1"
+              fillRule="nonzero"
+              fillOpacity=".1"
             ></path>
           </svg>
         </span>
@@ -413,9 +413,9 @@ function Btn(props: any) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M13 10V3L4 14h7v7l9-11h-7z"
           ></path>
         </svg>
@@ -452,9 +452,9 @@ function Btn(props: any) {
           fill="currentColor"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           ></path>
         </svg>
       </a>
@@ -640,7 +640,7 @@ function Btn(props: any) {
   let cy045 = (
     <div className=" w-full  flex items-center justify-center">
       <button className="btn p-4 relative border-0 uppercase text-amber-300 shadow bg-transparent hover:delay-[.5s] transition-all duration-500 hover:text-white before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:transition-all before:duration-500 before:bg-amber-300 before:hover:w-full after:absolute after:left-0 after:bottom-0 after:h-0 after:w-full after:transition-all after:duration-500 after:bg-amber-300 after:hover:h-full after:text-white after:-z-10 after:hover:delay-[0.4s]">
-        Hover me
+        {props.text}
       </button>
     </div>
   );
@@ -655,7 +655,7 @@ function Btn(props: any) {
     cy07,
     cy08,
     cy09,
-    cy010,
+
     cy011,
     cy012,
     cy013,

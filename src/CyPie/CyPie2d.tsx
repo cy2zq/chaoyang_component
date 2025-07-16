@@ -217,7 +217,7 @@ class Index extends Component {
               this.echartRef = e;
             }}
             option={this.getOption()}
-            theme="Imooc"
+            style={{ ...this.props.style }}
           />
         </div>
       </div>
