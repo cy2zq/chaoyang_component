@@ -62,7 +62,7 @@ const CarouselList = (props) => {
           {data?.map((item) => {
             var randomInt = Math.floor(Math.random() * 101);
 
-            let left = (randomInt * 48) / 5 + 21;
+            let left = (randomInt * 40) / 5 + 8;
             return (
               <div
                 className="swiper-slide"

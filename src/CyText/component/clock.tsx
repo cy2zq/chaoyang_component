@@ -25,10 +25,6 @@ class FlipClock extends Component {
         <Flipper ref="flipperMinute1" />
         <Flipper ref="flipperMinute2" />
         <Flipper ref="flipperSecond1" />
-        <Flipper ref="flipperSecond2" />
-        {/*<Flipper ref="flippera1" />*/}
-        {/*<Flipper ref="flippera2" />*/}
-        {/*<Flipper ref="flippera3" />*/}
       </div>
     );
   }
@@ -41,13 +37,15 @@ class FlipClock extends Component {
       this.refs.flipperMinute1,
       this.refs.flipperMinute2,
       this.refs.flipperSecond1,
-      this.refs.flipperSecond2,
-      // this.refs.flippera1,
-      // this.refs.flippera2,
-      // this.refs.flippera3,
     ];
     this.init();
     this.run();
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+    clearInterval(this.timer);
+    this.timer = null;
   }
 
   // 初始化数字
@@ -58,7 +56,7 @@ class FlipClock extends Component {
     }
   }
   getData() {
-    let randomNumber = Math.floor(Math.random() * 1000000)
+    let randomNumber = Math.floor(Math.random() * 100000)
       .toString()
       .padStart(7, '0');
     let str = randomNumber.toString()?.split('');

@@ -10,7 +10,7 @@ const BarList = (props) => {
 
   useEffect(() => {
     const datas = props?.data || [];
-
+    if (datas.length === 0) return; // 如果数据为空，不渲染
     let optionNew = {
       backgroundColor: 'transparent',
       grid: {
@@ -29,7 +29,7 @@ const BarList = (props) => {
         type: 'category',
         data: datas?.map((item) => item?.name), //数据
         axisLabel: {
-          color: 'white',
+          // color: 'white',
           formatter: (value) => {
             let a = value.slice(0, 2);
             let b = value.slice(2);
@@ -50,7 +50,7 @@ const BarList = (props) => {
           show: false, //不显示
         },
         axisLabel: {
-          color: 'white',
+          // color: 'white',
           formatter: showLabel,
           fontSize: 18,
         },
@@ -108,7 +108,7 @@ const BarList = (props) => {
           label: {
             show: true,
             position: 'top', // 位置
-            color: '#fff',
+            // color: '#fff',
             fontSize: 15,
             distance: 10, // 距离
             // formatter: '{c}%' // 这里是数据展示的时候显示的数据

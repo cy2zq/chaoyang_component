@@ -1,5 +1,4 @@
-.cy01{
-
+.cy01 {
   .toggles-grid {
     display: flex;
     flex-direction: column;
@@ -44,10 +43,11 @@
     border-radius: 50%;
     width: 28px;
     height: 28px;
-    background-image: url("./wood-pattern.png");
+    background-image: url('./wood-pattern.png');
     background-size: 328px 110px;
     background-position: center;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 4px #b75301, 0 1px 4px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 4px #b75301,
+      0 1px 4px rgba(0, 0, 0, 0.75);
     transition-property: transform;
     transition-duration: 0.4s;
   }
@@ -56,7 +56,7 @@
   }
 
   .toggle-container.a .toggle-handle::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 6.5px;
     border-radius: 50%;
@@ -102,14 +102,15 @@
     left: 0;
     border-radius: inherit;
     padding: 9px;
-    width: 19px;
-    height: 10px;
-    //height: 100%;
+    // width: 37px;
+    // height: 29px;
+    top: -1px;
     transform: translateX(-4px);
-    background-image: url("./wood-pattern.png");
+    background-image: url('./wood-pattern.png');
     background-size: 328px 110px;
     background-position: center;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 4px #b75301, 0 1px 4px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 4px #b75301,
+      0 1px 4px rgba(0, 0, 0, 0.75);
     transition-property: transform;
     transition-duration: 0.4s;
   }
@@ -168,12 +169,22 @@
     width: 52px;
     height: 14px;
     background-color: #775b40;
-    background-image: radial-gradient(14px 14px at 50% calc(50% + 2px), #775b40 50%, #4b3928 calc(50% + 1px)), radial-gradient(14px 14px at 50% calc(50% + 2px), #775b40 50%, #4b3928 calc(50% + 1px)), linear-gradient(rgba(0, 0, 0, 0.5) calc(50% - 2px), transparent 50%);
+    background-image: radial-gradient(
+        14px 14px at 50% calc(50% + 2px),
+        #775b40 50%,
+        #4b3928 calc(50% + 1px)
+      ),
+      radial-gradient(14px 14px at 50% calc(50% + 2px), #775b40 50%, #4b3928 calc(50% + 1px)),
+      linear-gradient(rgba(0, 0, 0, 0.5) calc(50% - 2px), transparent 50%);
     background-size: 14px 14px, 14px 14px, 100% 100%;
     background-position: 0 0, 100% 0, 0 0;
     background-repeat: no-repeat;
-    -webkit-mask-image: radial-gradient(14px circle, #fff 50%, transparent 0), linear-gradient(transparent 5px, #fff 5px 9px, transparent 0), radial-gradient(14px circle, #fff 50%, transparent 0);
-    mask-image: radial-gradient(14px circle, #fff 50%, transparent 0), linear-gradient(transparent 5px, #fff 5px 9px, transparent 0), radial-gradient(14px circle, #fff 50%, transparent 0);
+    -webkit-mask-image: radial-gradient(14px circle, #fff 50%, transparent 0),
+      linear-gradient(transparent 5px, #fff 5px 9px, transparent 0),
+      radial-gradient(14px circle, #fff 50%, transparent 0);
+    mask-image: radial-gradient(14px circle, #fff 50%, transparent 0),
+      linear-gradient(transparent 5px, #fff 5px 9px, transparent 0),
+      radial-gradient(14px circle, #fff 50%, transparent 0);
     -webkit-mask-size: 14px 14px, 100% 100%, 14px 14px;
     mask-size: 14px 14px, 100% 100%, 14px 14px;
     -webkit-mask-position: 0 0, 0 0, 100% 0;
@@ -182,12 +193,18 @@
     mask-repeat: no-repeat;
   }
   .toggle-container.c .toggle-track::before {
-    content: "";
+    content: '';
     position: absolute;
     width: inherit;
     height: inherit;
     background-color: #5698bb;
-    background-image: radial-gradient(14px 14px at 50% calc(50% + 2px), #5698bb 50%, #33596e calc(50% + 1px)), radial-gradient(14px 14px at 50% calc(50% + 2px), #5698bb 50%, #33596e calc(50% + 1px)), linear-gradient(rgba(0, 0, 0, 0.5) calc(50% - 2px), transparent 50%);
+    background-image: radial-gradient(
+        14px 14px at 50% calc(50% + 2px),
+        #5698bb 50%,
+        #33596e calc(50% + 1px)
+      ),
+      radial-gradient(14px 14px at 50% calc(50% + 2px), #5698bb 50%, #33596e calc(50% + 1px)),
+      linear-gradient(rgba(0, 0, 0, 0.5) calc(50% - 2px), transparent 50%);
     background-size: inherit;
     background-position: inherit;
     background-repeat: inherit;
@@ -212,10 +229,11 @@
     border-radius: 50%;
     width: 24px;
     height: 24px;
-    background-image: url("./wood-pattern.png");
+    background-image: url('./wood-pattern.png');
     background-size: 328px 110px;
     background-position: center;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 4px #b75301, 0 1px 4px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -1px 4px #b75301,
+      0 1px 4px rgba(0, 0, 0, 0.75);
     transition-property: transform;
     transition-duration: 0.4s;
   }
@@ -227,7 +245,7 @@
   }
 
   .toggle-container.c .toggle-handle::before {
-    content: "";
+    content: '';
     position: absolute;
     border-radius: 50%;
     width: 6px;
@@ -244,10 +262,12 @@
     border-radius: 4px;
     width: 76px;
     height: 32px;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.125), rgba(255, 255, 255, 0.125)), url("./wood-pattern.png");
+    background-image: linear-gradient(rgba(255, 255, 255, 0.125), rgba(255, 255, 255, 0.125)),
+      url('./wood-pattern.png');
     background-size: 100% 100%, 328px 110px;
     background-position: center;
-    box-shadow: inset 1px 0 1px rgba(73, 31, 1, 0.25), inset -1px 0 1px rgba(73, 31, 1, 0.25), 0 0 1px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 1px 0 1px rgba(73, 31, 1, 0.25), inset -1px 0 1px rgba(73, 31, 1, 0.25),
+      0 0 1px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.5);
   }
   .toggle-container.d .toggle-input {
     position: absolute;
@@ -263,7 +283,13 @@
     //padding: 8px;
     width: 70px;
     height: inherit;
-    background-image: linear-gradient(90deg, rgba(73, 31, 1, 0.125), rgba(255, 255, 255, 0.25), rgba(73, 31, 1, 0.25)), url("./wood-pattern.png");
+    background-image: linear-gradient(
+        90deg,
+        rgba(73, 31, 1, 0.125),
+        rgba(255, 255, 255, 0.25),
+        rgba(73, 31, 1, 0.25)
+      ),
+      url('./wood-pattern.png');
     background-size: 200% 100%, 328px 110px;
     background-position: 100% 0, center;
     box-shadow: inset 0 0.5px 1px #e9d38d, inset 1px 0 1px #e9d38d;
@@ -301,7 +327,6 @@
     color: #5297ba;
   }
 
-
   button,
   input,
   optgroup,
@@ -323,20 +348,46 @@
   }
 }
 :root {
-  --bg:black;
+  --bg: black;
   --glow-hue: 222deg;
   --shadow-hue: 180deg;
   --spring-easing: linear(
-    0, 0.002, 0.01 0.9%, 0.038 1.8%, 0.156, 0.312 5.8%, 0.789 11.1%, 1.015 14.2%,
-    1.096, 1.157, 1.199, 1.224 20.3%, 1.231, 1.231, 1.226, 1.214 24.6%,
-    1.176 26.9%, 1.057 32.6%, 1.007 35.5%, 0.984, 0.968, 0.956, 0.949 42%,
-    0.946 44.1%, 0.95 46.5%, 0.998 57.2%, 1.007, 1.011 63.3%, 1.012 68.3%,
-    0.998 84%, 1
+    0,
+    0.002,
+    0.01 0.9%,
+    0.038 1.8%,
+    0.156,
+    0.312 5.8%,
+    0.789 11.1%,
+    1.015 14.2%,
+    1.096,
+    1.157,
+    1.199,
+    1.224 20.3%,
+    1.231,
+    1.231,
+    1.226,
+    1.214 24.6%,
+    1.176 26.9%,
+    1.057 32.6%,
+    1.007 35.5%,
+    0.984,
+    0.968,
+    0.956,
+    0.949 42%,
+    0.946 44.1%,
+    0.95 46.5%,
+    0.998 57.2%,
+    1.007,
+    1.011 63.3%,
+    1.012 68.3%,
+    0.998 84%,
+    1
   );
   --spring-duration: 1.33s;
 }
 @property --shimmer {
-  syntax: "<angle>";
+  syntax: '<angle>';
   inherits: false;
   initial-value: 33deg;
 }
@@ -372,25 +423,19 @@
     background-position: -100% center;
   }
 }
-.cy02{
-
+.cy02 {
   //关于发光按钮
-
 
   button {
     color: var(--bg);
     font-weight: 600;
     /*     background-image: linear-gradient(90deg, #fcecfe, #fbf6e7, #e6fcf5); */
-    background-image: linear-gradient(
-      315deg,
-        #ffc4ec -10%,
-      #efdbfd 50%,
-      #ffedd6 110%
-    );
-    padding: .8em 1.4em;
+    background-image: linear-gradient(315deg, #ffc4ec -10%, #efdbfd 50%, #ffedd6 110%);
+    padding: 0.8em 1.4em;
     position: relative;
     isolation: isolate;
-    box-shadow: 0 2px 3px 1px hsl(var(--glow-hue) 50% 20% / 50%), inset 0 -10px 20px -10px hsla(var(--shadow-hue),10%,90%,95%);
+    box-shadow: 0 2px 3px 1px hsl(var(--glow-hue) 50% 20% / 50%),
+      inset 0 -10px 20px -10px hsla(var(--shadow-hue), 10%, 90%, 95%);
     border-radius: 0.66em;
     scale: 1;
     transition: all var(--spring-duration) var(--spring-easing);
@@ -398,13 +443,13 @@
 
   button:hover:not(:active),
   button.active {
-    transition-duration: calc(var(--spring-duration)*0.5);
+    transition-duration: calc(var(--spring-duration) * 0.5);
     scale: 1.2;
     box-shadow: 0 4px 8px -2px hsl(var(--glow-hue) 50% 20% / 50%), inset 0 0 0 transparent;
   }
   button:active {
     scale: 1.1;
-    transition-duration: calc(var(--spring-duration)*0.5);
+    transition-duration: calc(var(--spring-duration) * 0.5);
   }
 
   .shimmer {
@@ -438,7 +483,7 @@
   .shimmer::after {
     transition: all 0.5s ease;
     opacity: 0;
-    content: "";
+    content: '';
     border-radius: inherit;
     position: absolute;
     mix-blend-mode: color;
@@ -446,17 +491,15 @@
     pointer-events: none;
   }
   .shimmer::before {
-    box-shadow: 0 0 3px 2px hsl(var(--glow-hue) 20% 95%),
-    0 0 7px 4px hsl(var(--glow-hue) 20% 80%),
-    0 0 13px 4px hsl(var(--glow-hue) 50% 70%),
-    0 0 25px 5px hsl(var(--glow-hue) 100% 70%);
+    box-shadow: 0 0 3px 2px hsl(var(--glow-hue) 20% 95%), 0 0 7px 4px hsl(var(--glow-hue) 20% 80%),
+      0 0 13px 4px hsl(var(--glow-hue) 50% 70%), 0 0 25px 5px hsl(var(--glow-hue) 100% 70%);
     z-index: -1;
   }
 
   .shimmer::after {
     box-shadow: inset 0 0 0 1px hsl(var(--glow-hue) 70% 95%),
-    inset 0 0 2px 1px hsl(var(--glow-hue) 100% 80%),
-    inset 0 0 5px 2px hsl(var(--glow-hue) 100% 70%);
+      inset 0 0 2px 1px hsl(var(--glow-hue) 100% 80%),
+      inset 0 0 5px 2px hsl(var(--glow-hue) 100% 70%);
     z-index: 2;
   }
 
@@ -464,7 +507,13 @@
     color: transparent;
     background-clip: text;
     background-color: black;
-    background-image: linear-gradient(120deg, transparent, hsla(var(--glow-hue),100%,80%,0.66) 40%, hsla(var(--glow-hue),100%,90%,.9) 50%, transparent 52%);
+    background-image: linear-gradient(
+      120deg,
+      transparent,
+      hsla(var(--glow-hue), 100%, 80%, 0.66) 40%,
+      hsla(var(--glow-hue), 100%, 90%, 0.9) 50%,
+      transparent 52%
+    );
     background-repeat: no-repeat;
     background-size: 300% 300%;
     background-position: center 200%;
@@ -472,12 +521,10 @@
 
   button:hover .text,
   button.active .text {
-    animation: text .66s ease-in 1 both;
+    animation: text 0.66s ease-in 1 both;
   }
-
-
 }
-.cy03{
+.cy03 {
   body {
     margin: 0;
   }
@@ -501,7 +548,13 @@
   }
   .layout--red {
     background: #8b0028;
-    background: repeating-linear-gradient(45deg, #7d0024 0px, #7d0024 15px, #6e0020 15px, #6e0020 30px);
+    background: repeating-linear-gradient(
+      45deg,
+      #7d0024 0px,
+      #7d0024 15px,
+      #6e0020 15px,
+      #6e0020 30px
+    );
   }
   .button {
     display: flex;
@@ -518,7 +571,7 @@
     transition: all ease 0.6s;
   }
   .button::before {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 30;
     top: 0;
@@ -535,7 +588,7 @@
   /////////////////////////////////// */
   .text {
     color: #fff;
-    font-family: "Limelight", sans-serif;
+    font-family: 'Limelight', sans-serif;
   }
   .text .text__inner--S {
     font-size: 20px;
@@ -560,13 +613,17 @@
     z-index: 3;
     height: 24px;
     background: #e1f0f7;
-    clip-path: path("m314.07,1.39c-25.69.39-44.58,1.86-60.71,1.91-16.13.05-58.4-1.97-81.86-1.97-26.16,0-51.02,1.27-69.83,1.63C72.15,3.51,22.96,0,0,0v24h340V.89s-19.94.41-25.93.5Z");
+    clip-path: path(
+      'm314.07,1.39c-25.69.39-44.58,1.86-60.71,1.91-16.13.05-58.4-1.97-81.86-1.97-26.16,0-51.02,1.27-69.83,1.63C72.15,3.51,22.96,0,0,0v24h340V.89s-19.94.41-25.93.5Z'
+    );
   }
   .ground--front {
     z-index: 10;
     height: 16px;
     background: #fff;
-    clip-path: path("m280.99,1.7c-34.27-.6-73.35-.3-96.24.45C161.87,2.91,115.26.5,88.52.05,69.73-.27,18.48,1.03,0,1.78v14.22h340V.58c-3.03.45-33.09,1.58-59.01,1.13Z");
+    clip-path: path(
+      'm280.99,1.7c-34.27-.6-73.35-.3-96.24.45C161.87,2.91,115.26.5,88.52.05,69.73-.27,18.48,1.03,0,1.78v14.22h340V.58c-3.03.45-33.09,1.58-59.01,1.13Z'
+    );
   }
   /* ///////////////////////////////////
 
@@ -585,24 +642,32 @@
     border: solid 1px #fff;
   }
   .reflection::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 2px;
     left: 2px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
     border-radius: 100px;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 10%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.3) 90%);
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.3) 10%,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0) 70%,
+      rgba(255, 255, 255, 0.3) 90%
+    );
   }
   .reflection::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 4px;
     left: 4px;
     width: 328px;
     height: 68px;
     background: linear-gradient(-135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
-    clip-path: path("m6,55.15v-.29C6,31.19,25.19,12.01,48.86,12.01h244.29c14.39,0,27.11,7.1,34.88,17.97-5.47-17.38-21.7-29.98-40.88-29.98H42.85C19.19,0,0,19.19,0,42.85v.29c0,9.28,2.96,17.87,7.97,24.88-1.28-4.06-1.97-8.39-1.97-12.87Z");
+    clip-path: path(
+      'm6,55.15v-.29C6,31.19,25.19,12.01,48.86,12.01h244.29c14.39,0,27.11,7.1,34.88,17.97-5.47-17.38-21.7-29.98-40.88-29.98H42.85C19.19,0,0,19.19,0,42.85v.29c0,9.28,2.96,17.87,7.97,24.88-1.28-4.06-1.97-8.39-1.97-12.87Z'
+    );
   }
   /* ///////////////////////////////////
 
@@ -627,7 +692,7 @@
     height: 6px;
   }
   .house--TypeC .chimney::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -670,7 +735,7 @@
     background: #fff;
   }
   .house--TypeC .house__roof::before {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 1;
     bottom: 0;
@@ -685,7 +750,7 @@
     border-bottom: solid 12px #c0bebf;
   }
   .house--TypeC .house__roof::after {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 2;
     bottom: 0;
@@ -714,7 +779,7 @@
   }
   .house--TypeC .house__main::before,
   .house--TypeC .house__main::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     width: 0;
@@ -749,7 +814,7 @@
   }
   .block::before,
   .block::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 2px;
     width: 4px;
@@ -776,7 +841,7 @@
     transition: all ease 0.5s;
   }
   .house--TypeC .window::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 3px;
     left: 0;
@@ -806,7 +871,7 @@
   }
   .house--TypeC .topWindow::before,
   .house--TypeC .topWindow::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -848,7 +913,7 @@
     border: solid 2px #009056;
   }
   .house--TypeC .lease::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -1px;
     left: 0;
@@ -859,7 +924,7 @@
     background: #c40030;
   }
   .house--TypeC .lease::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -883,7 +948,7 @@
   }
   .house--TypeC .fence::before,
   .house--TypeC .fence::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     width: 100%;
@@ -910,7 +975,7 @@
     background: #423529;
   }
   .tree::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 0;
     height: 0;
@@ -966,7 +1031,7 @@
   }
   .illumination::before,
   .illumination::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     width: 3px;
@@ -1020,7 +1085,7 @@
     background: #423529;
   }
   .xmasTree::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -54px;
     left: -16px;
@@ -1038,7 +1103,9 @@
     width: 12px;
     height: 12px;
     background: #ffe211;
-    clip-path: path("m11.85,4.22l-3.54-.99s-.09-.04-.11-.08L6.17.09c-.08-.12-.25-.12-.33,0l-2.03,3.06s-.07.07-.11.08L.15,4.22c-.14.04-.19.2-.1.32l2.28,2.88s.04.08.04.13l-.15,3.67c0,.14.14.24.27.2l3.45-1.28s.09-.02.14,0l3.45,1.28c.13.05.27-.05.27-.2l-.15-3.67s.01-.09.04-.13l2.28-2.88c.09-.11.03-.28-.1-.32Z");
+    clip-path: path(
+      'm11.85,4.22l-3.54-.99s-.09-.04-.11-.08L6.17.09c-.08-.12-.25-.12-.33,0l-2.03,3.06s-.07.07-.11.08L.15,4.22c-.14.04-.19.2-.1.32l2.28,2.88s.04.08.04.13l-.15,3.67c0,.14.14.24.27.2l3.45-1.28s.09-.02.14,0l3.45,1.28c.13.05.27-.05.27-.2l-.15-3.67s.01-.09.04-.13l2.28-2.88c.09-.11.03-.28-.1-.32Z'
+    );
   }
   .xtLight {
     position: absolute;
@@ -1062,7 +1129,7 @@
   }
   .xtLight::before,
   .xtLight::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     width: 5px;
@@ -1196,7 +1263,7 @@
   }
   .snow__inner::before,
   .snow__inner::after {
-    content: "***************";
+    content: '***************';
     position: absolute;
     top: 100%;
     left: 0;
@@ -1567,5 +1634,4 @@
       box-shadow: 0 0 2px #ac44ff;
     }
   }
-
 }

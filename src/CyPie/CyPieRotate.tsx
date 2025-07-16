@@ -1,7 +1,8 @@
 import { Progress } from 'antd';
 import styles from './index.module.less';
-function CyPieRotate(props) {
+function CyPieRotate(props: any) {
   const { data, title } = props;
+
   return (
     <div className={styles.content1}>
       <div className={styles.count1}></div>
