@@ -10,7 +10,8 @@ order: 2
 
 ### fontawesome
 
-- <a href="https://fontawesome.com.cn/v5" target="_blank" rel="noopener noreferrer">中文官网</a>
+- <a href="https://fontawesome.com.cn/v5" target="_blank" rel="noopener noreferrer">中文官网-针对 v5</a>
+- <a href="https://fontawesome.com/icons" target="_blank" rel="noopener noreferrer">英文官网-针对 v6，请使用英文官网</a>
 - <a href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" target="_blank" rel="noopener noreferrer">版本链接：版本号可改 6.5.2</a>
   只需要引入该 css 文件即可
 
