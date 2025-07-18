@@ -20,13 +20,13 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '23'
 
       - name: Install deps
         run: pnpm install
 
-      # - name: Test
-      #   run: pnpm run test
+      - name: Test
+        run: pnpm run test
 
   release:
     needs: test
