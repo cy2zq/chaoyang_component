@@ -104,7 +104,8 @@
     "echarts-for-react": "^3.0.2",
     "mockjs": "^1.1.0",
     "react-beautiful-dnd": "^13.1.1",
-    "react-scale-view": "^1.1.2"
+    "react-scale-view": "^1.1.2",
+    "react-vertical-timeline-component": "^3.5.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17",
