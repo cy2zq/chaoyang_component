@@ -36,13 +36,11 @@ lambda/mock/index.js
 .doc
 
 myComponent/
-.myComponent
 
 # cache directories
 node-compile-cache/
 .cache/
 **/node_modules/.cache/
-
 
 
 
