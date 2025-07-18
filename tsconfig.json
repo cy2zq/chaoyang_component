@@ -10,6 +10,9 @@
     "baseUrl": "./",
     "types": ["vitest/globals"],
     "noImplicitAny": false,
+    "noUnusedLocals": false, // 允许未使用的变量
+    "noUnusedParameters": false, // 允许未使用的参数
+    "strictNullChecks": false, // 关闭严格的 null 检查
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "@/*": ["src"],
