@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkchaoyang_component=self.webpackChunkchaoyang_component||[]).push([[9946],{9503:function(n,e,c){c.r(e);var t=c(12794),u=c(79258),a=c(11527);e.default=function(){var n=(0,t.useOutlet)();return(0,a.jsx)(u.Z,{children:n})}}}]);
