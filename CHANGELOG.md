@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/cy2zq/chaoyang_component/compare/v1.17.0...v1.18.0) (2025-08-17)
+
+
+### Features
+
+* **API:** eidt readme ([f274631](https://github.com/cy2zq/chaoyang_component/commit/f2746312f601726a90236ce26399e3aa94829f4b))
+
 # [1.17.0](https://github.com/cy2zq/chaoyang_component/compare/v1.16.0...v1.17.0) (2025-07-18)
 
 
