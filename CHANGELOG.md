@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/cy2zq/chaoyang_component/compare/v1.18.0...v1.19.0) (2025-08-17)
+
+
+### Features
+
+* **API:** edit ts error ([6c07050](https://github.com/cy2zq/chaoyang_component/commit/6c070504e9038db3bfebcf640060b3c3aea73a85))
+
 # [1.18.0](https://github.com/cy2zq/chaoyang_component/compare/v1.17.0...v1.18.0) (2025-08-17)
 
 
