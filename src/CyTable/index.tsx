@@ -1,174 +1,169 @@
+import React, { useEffect, useRef, useState, useCallback, FC } from 'react';
 import * as VTable from '@visactor/vtable';
 import { downloadExcel, exportVTableToExcel } from '@visactor/vtable-export';
 import { Checkbox, Popover } from 'antd';
+import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
-import { useEffect, useRef, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+// 定义列和数据项的基本类型
+interface Column {
+  field: string;
+  title: string;
+  summaryFun?: (value: any) => string;
+  summaryFunType?: keyof typeof VTable.TYPES.AggregationType;
+  [key: string]: any;
+}
 
-function Index(props) {
+interface ColumnItem extends Column {
+  checked: boolean;
+}
+
+interface IProps<T> {
+  columns: Column[];
+  dataSource: T[];
+  options?: Partial<VTable.ListTableConstructorOptions>;
+  theme?: keyof typeof VTable.themes;
+  onMount?: (
+    tableInstance: VTable.ListTable,
+    exportExcel: (title: string, excelOption?: any) => void,
+  ) => void;
+  hideRowSeriesNumber?: boolean;
+  [key: string]: any; // 允许其他任意 props
+}
+
+const Index: FC<IProps<any>> = (props) => {
   const {
     columns,
     dataSource,
     options,
     theme = 'DEFAULT',
     onMount,
-    hideRowSeriesNumber, //隐藏序号
+    hideRowSeriesNumber,
     ...rest
   } = props;
 
-  const [items, setItems] = useState(
-    columns?.map((item) => {
-      return {
+  const [items, setItems] = useState<ColumnItem[]>(
+    () =>
+      columns?.map((item) => ({
         ...item,
         checked: true,
-      };
-    }),
+      })) || [],
   );
-  const reorder = (list, startIndex, endIndex) => {
-    const result = list;
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
 
-    return result;
-  };
+  const tableInstanceRef = useRef<VTable.ListTable | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const onDragEnd = (result) => {
-    // 在这里处理拖放后的逻辑
-
-    // 实际应用中，你需要更新状态来反映新排列的items
-    console.log(57, result);
-
-    const { source, destination } = result;
-
-    // dropped outside the list
-    if (!destination) {
-      return;
-    }
-    const _items = reorder(items, source.index, destination.index);
-    const newState = [..._items];
-    setItems(newState);
-  };
-
-  const ref = useRef(null);
-  let tableInstance = null;
-  const exportExcel = async (
-    title,
-    excelOption = {
-      excelJSWorksheetCallback: (worksheet) => {
-        // worksheet.insertRow(1, ["2024年12月——2024年12月项目经营月报"]);
-        //
-        // worksheet.getCell("A1").font = {
-        //   name: "Comic Sans MS",
-        //   // family: 4,
-        //   size: 26,
-        //   bold: true,
-        // };
-
-        worksheet.views = [
-          {
-            state: 'frozen',
-            xSplit: 3,
-            ySplit: 1,
-          },
-        ];
-        worksheet.name = 'cy';
-        // worksheet.mergeCells("A1:K1");
-      },
-      ignoreIcon: true,
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { source, destination } = result;
+      if (!destination) {
+        return;
+      }
+      const reorder = (list: ColumnItem[], startIndex: number, endIndex: number) => {
+        const resultList = Array.from(list);
+        const [removed] = resultList.splice(startIndex, 1);
+        resultList.splice(endIndex, 0, removed);
+        return resultList;
+      };
+      const newItems = reorder(items, source.index, destination.index);
+      setItems(newItems);
     },
-  ) => {
-    if (tableInstance) {
-      downloadExcel(await exportVTableToExcel(tableInstance, excelOption), title);
-    }
-  };
+    [items],
+  );
 
-  //不知道为何这里不能用async
-  // Transforming async generator functions to the configured target environment ("chrome80", "es2015") is not supported yet
+  const exportExcel = useCallback(
+    async (
+      title: string,
+      excelOption: any = {
+        excelJSWorksheetCallback: (worksheet: any) => {
+          worksheet.views = [{ state: 'frozen', xSplit: 3, ySplit: 1 }];
+          worksheet.name = 'cy';
+        },
+        ignoreIcon: true,
+      },
+    ) => {
+      if (tableInstanceRef.current) {
+        const excelData = await exportVTableToExcel(tableInstanceRef.current, excelOption);
+        downloadExcel(excelData, title);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
-    const option = {
-      records: dataSource || [{ id: 'cytest' }],
-      rows: [],
-      columns: items
-        ?.filter((e) => e?.checked)
-        ?.map((item) => {
-          if (item?.summaryFun) {
-            let type = item?.summaryFunType || 'SUM';
-            return {
-              ...item,
-              aggregation: {
-                aggregationType: VTable.TYPES.AggregationType[type],
-                formatFun: item?.summaryFun,
-              },
-            };
-          }
+    if (!ref.current) return;
+
+    const filteredColumns = items
+      ?.filter((e) => e?.checked)
+      .map((item) => {
+        if (item.summaryFun) {
+          const type = item.summaryFunType || 'SUM';
           return {
             ...item,
+            aggregation: {
+              aggregationType: VTable.TYPES.AggregationType[type],
+              formatFun: item.summaryFun,
+            },
           };
-        }),
+        }
+        return item;
+      });
+
+    const option: VTable.ListTableConstructorOptions = {
+      records: dataSource || [],
+      columns: filteredColumns,
+      container: ref.current,
       overscrollBehavior: 'none',
       widthMode: 'standard',
-      // pagination: {
-      //   perPageCount: 100,
-      //   currentPage: 1,
-      // },
-      aggregation(args) {
+      aggregation: (args) => {
         if (args.col === 0) {
           return [
             {
               aggregationType: VTable.TYPES.AggregationType.NONE,
               showOnTop: false,
-              formatFun(value) {
-                return '汇总';
-              },
+              formatFun: () => '汇总',
             },
           ];
         }
         return null;
       },
-      // theme: VTable.themes.DEFAULT.extends({
-      //   bottomFrozenStyle: {
-      //     // bgColor: "#ECF1F5",
-      //     borderLineWidth: [1, 1, 1, 1],
-      //     // borderColor: ["gray"],
-      //   },
-      // }),
       keyboardOptions: {
         moveEditCellOnArrowKeys: true,
         copySelected: true,
         pasteValueToCell: true,
       },
-      editor: '', // 配置一个空的编辑器，以遍能粘贴到单元格中
-      transpose: false, //是否转置
+      editor: '',
+      transpose: false,
       dragHeaderMode: 'all',
       select: {
-        highlightMode: 'cross', // 可以配置为'cross' 或者 'row' 或者 'column'
+        highlightMode: 'cross',
       },
-
       rowSeriesNumber: hideRowSeriesNumber
-        ? null
+        ? undefined
         : {
             title: '序号',
             dragOrder: true,
             width: 'auto',
           },
-
       tooltip: {
-        isShowOverflowTextTooltip: true, //溢出文本提示
+        isShowOverflowTextTooltip: true,
       },
-      theme: VTable.themes[theme],
+      theme: (VTable.themes as any)[theme],
       ...options,
     };
-    tableInstance = new VTable.ListTable(ref.current, option);
 
-    // const { CLICK_CELL } = VTable.ListTable.EVENT_TYPE;
-    // tableInstance.on(CLICK_CELL, (...args) => console.log(CLICK_CELL, args));
-    // tableInstance.on("mouseenter_cell", (...args) => console.log(args));
+    const tableInstance = new VTable.ListTable(option);
+    tableInstanceRef.current = tableInstance;
 
     if (onMount) {
       onMount(tableInstance, exportExcel);
     }
-  }, [dataSource, items, options, theme]);
+
+    return () => {
+      tableInstance.release();
+      tableInstanceRef.current = null;
+    };
+  }, [dataSource, items, options, theme, onMount, exportExcel, hideRowSeriesNumber]);
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'flex-start', padding: '10px 0' }}>
@@ -176,22 +171,19 @@ function Index(props) {
           <span
             className={'fas fa-file-archive'}
             onClick={() => exportExcel('cy_test')}
-            style={{ fontSize: 22 }}
+            style={{ fontSize: 22, cursor: 'pointer' }}
           ></span>
         </Popover>
         <Popover
           content={
             <Checkbox.Group
-              value={items?.filter((e) => e?.checked).map((item) => item.field)}
+              value={items?.filter((e) => e.checked).map((item) => item.field)}
               onChange={(checkedValues) => {
-                console.log(checkedValues);
                 setItems(
-                  items?.map((item) => {
-                    return {
-                      ...item,
-                      checked: checkedValues.includes(item.field),
-                    };
-                  }),
+                  items.map((item) => ({
+                    ...item,
+                    checked: checkedValues.includes(item.field),
+                  })),
                 );
               }}
             >
@@ -207,11 +199,7 @@ function Index(props) {
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                             >
-                              <div
-                                style={{
-                                  fontSize: 18,
-                                }}
-                              >
+                              <div style={{ fontSize: 18, userSelect: 'none' }}>
                                 <i className="fas fa-list" style={{ marginRight: 10 }} />
                                 <Checkbox value={item.field}>{item.title}</Checkbox>
                               </div>
@@ -230,12 +218,15 @@ function Index(props) {
           title={'列设置'}
           trigger="click"
         >
-          <span className={'fas fa-cog'} style={{ fontSize: 22, marginLeft: 10 }}></span>
+          <span
+            className={'fas fa-cog'}
+            style={{ fontSize: 22, marginLeft: 10, cursor: 'pointer' }}
+          ></span>
         </Popover>
       </div>
       <div ref={ref} {...rest} />
     </div>
   );
-}
+};
 
 export default Index;

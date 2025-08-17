@@ -1,7 +1,7 @@
 // @cy
 import styled from '@emotion/styled';
 import { Progress } from 'antd';
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable } from '@hello-pangea/dnd';
 import QuoteList from './quote-list';
 
 const Container = styled.div`

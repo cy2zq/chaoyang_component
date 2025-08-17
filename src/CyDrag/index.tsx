@@ -11,7 +11,7 @@ import ReactDnd from './component/container';
 
 const Container = styled.div`
   width: 100%;
-  //height: ${(props) => props?.height}px;
+  //height: ${(props: any) => props?.height}px;
   overflow-y: hidden;
   overflow-x: scroll;
   //&::-webkit-scrollbar {
@@ -56,7 +56,7 @@ const Board = (props: any) => {
       <Input
         placeholder="按enter保存"
         onPressEnter={(e) => {
-          let boardName = e?.target?.value;
+          let boardName = (e as any)?.target?.value;
           setData([
             ...data,
             {

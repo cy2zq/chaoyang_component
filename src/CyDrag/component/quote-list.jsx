@@ -1,7 +1,7 @@
 // @flow
 import styled from '@emotion/styled';
 import React from 'react';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from '@hello-pangea/dnd';
 import { divWidth, grid, scrollContainerHeight } from './constants';
 import QuoteItem from './quote-item';
 import Title from './title';

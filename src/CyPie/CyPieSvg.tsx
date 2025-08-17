@@ -6,19 +6,16 @@
 import { useEffect, useRef } from 'react';
 import styles from './index.module.less';
 
-const PieSvg = (props) => {
-  const ref = useRef();
+const PieSvg = (props: any) => {
+  const ref = useRef<any>(null);
   //分段的原始
   let mainColor = '#5675A5';
   let mainColor_cy = props?.mainColor_cy || 'green' || '#FFFA99';
 
   let percent = props?.percent || 0;
   let circle1 = [mainColor_cy, mainColor_cy, mainColor_cy];
-  let circle11 = ['#01E5FE', '#1B7EF2', '#1B7EF2'];
   let circle2 = [mainColor_cy, mainColor_cy];
-  let circle21 = ['#FFF27E', '#1B7EF2'];
   let circle3 = [mainColor_cy, mainColor_cy];
-  let circle31 = ['#FFE28B', '#49473C'];
   let width = props?.width || 126;
   let height = props?.height || 60;
   useEffect(() => {
@@ -38,9 +35,9 @@ const PieSvg = (props) => {
     }
   }, [mainColor_cy, percent]);
 
-  let id1 = 'cy_circle' + parseInt(Math.random() * 10000000);
-  let id2 = 'cy_circle_1' + parseInt(Math.random() * 10000000);
-  let id3 = 'cy_circle_2' + parseInt(Math.random() * 10000000);
+  let id1 = 'cy_circle' + Math.floor(Math.random() * 10000000);
+  let id2 = 'cy_circle_1' + Math.floor(Math.random() * 10000000);
+  let id3 = 'cy_circle_2' + Math.floor(Math.random() * 10000000);
 
   return (
     <div

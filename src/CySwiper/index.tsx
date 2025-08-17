@@ -1,12 +1,25 @@
-import { type FC } from 'react';
+import React, { type FC } from 'react';
 import CarouselList from './CarouselList';
 import List from './List';
 import './index.less';
-const Foo: FC<{ type: any; data: any }> = (props) => {
-  const { height } = props;
+
+// 定义数据项和 Props 的类型
+interface DataItem {
+  // 这里可以根据您的实际数据结构进行更详细的定义
+  [key: string]: any;
+}
+
+interface IProps {
+  type: 'chart' | 'carousel';
+  data: DataItem[];
+  style?: React.CSSProperties;
+  height?: string | number;
+}
+
+const Foo: FC<IProps> = ({ type, data, style, height }) => {
   return (
-    <div style={props.style}>
-      {props?.type == 'chart' ? (
+    <div style={style}>
+      {type === 'chart' ? (
         <div
           style={{
             width: '100%',
@@ -14,7 +27,7 @@ const Foo: FC<{ type: any; data: any }> = (props) => {
             overflow: 'hidden',
           }}
         >
-          <List data={props?.data} style={props.style} />
+          <List data={data} style={style} />
         </div>
       ) : (
         <div
@@ -24,7 +37,7 @@ const Foo: FC<{ type: any; data: any }> = (props) => {
             overflow: 'hidden',
           }}
         >
-          <CarouselList data={props?.data} />
+          <CarouselList data={data} />
         </div>
       )}
     </div>

@@ -3,123 +3,115 @@
  * @author： 兔子先生
  * @createDate: 2019-11-24
  */
-import { Component } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import Flipper from './flip';
 import './index.less';
 
-class FlipClock extends Component {
-  constructor(props) {
-    super(props);
-    this.timer = null;
-    this.flipObjs = [];
-    this.str = [];
-  }
+// 为 Flipper 组件实例定义一个类型接口
+interface FlipperInstance {
+  setFront: (char: string) => void;
+  flipDown: (from: string, to: string) => void;
+}
 
-  render() {
-    return (
-      <div className="FlipClock">
-        <Flipper ref="flipper1" />
-        <Flipper ref="flipperHour1" />
-        <Flipper ref="flipperHour2" />
-        <em>,</em>
-        <Flipper ref="flipperMinute1" />
-        <Flipper ref="flipperMinute2" />
-        <Flipper ref="flipperSecond1" />
-      </div>
-    );
-  }
+// 日期时间补零
+const padLeftZero = (str: string): string => {
+  return ('00' + str).substr(str.length);
+};
 
-  componentDidMount() {
-    this.flipObjs = [
-      this.refs.flipper1,
-      this.refs.flipperHour1,
-      this.refs.flipperHour2,
-      this.refs.flipperMinute1,
-      this.refs.flipperMinute2,
-      this.refs.flipperSecond1,
-    ];
-    this.init();
-    this.run();
-  }
-
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-    clearInterval(this.timer);
-    this.timer = null;
-  }
-
-  // 初始化数字
-  init() {
-    let str = this.getData();
-    for (let i = 0; i < this.flipObjs.length; i++) {
-      this.flipObjs[i].setFront(str[i]);
-    }
-  }
-  getData() {
-    let randomNumber = Math.floor(Math.random() * 100000)
-      .toString()
-      .padStart(7, '0');
-    let str = randomNumber.toString()?.split('');
-    this.setState({
-      str,
-    });
-    return str;
-  }
-  // 开始计时
-  run() {
-    this.timer = setInterval(() => {
-      let str = this.getData();
-      console.log(str, 76);
-      for (let i = 0; i < this.flipObjs.length; i++) {
-        if (this.state.str[i] === str[i]) {
-          continue;
-        }
-
-        this.flipObjs[i].flipDown(this.state.str[i], str[i]);
-      }
-    }, 3000);
-  }
-  // 正则格式化日期
-  formatDate(date, dateFormat) {
-    /* 单独格式化年份，根据y的字符数量输出年份
+// 正则格式化日期
+const formatDate = (date: Date, dateFormat: string): string => {
+  let newDateFormat = dateFormat;
+  /* 单独格式化年份，根据y的字符数量输出年份
    * 例如：yyyy => 2019
           yy => 19
           y => 9
    */
-    if (/(y+)/.test(dateFormat)) {
-      dateFormat = dateFormat.replace(
+  if (/(y+)/.test(newDateFormat)) {
+    newDateFormat = newDateFormat.replace(
+      RegExp.$1,
+      (date.getFullYear() + '').substr(4 - RegExp.$1.length),
+    );
+  }
+  // 格式化月、日、时、分、秒
+  let o: { [key: string]: number } = {
+    'm+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'i+': date.getMinutes(),
+    's+': date.getSeconds(),
+  };
+  for (let k in o) {
+    if (new RegExp(`(${k})`).test(newDateFormat)) {
+      // 取出对应的值
+      let str = o[k] + '';
+      newDateFormat = newDateFormat.replace(
         RegExp.$1,
-        (date.getFullYear() + '').substr(4 - RegExp.$1.length),
+        RegExp.$1.length === 1 ? str : padLeftZero(str),
       );
     }
-    // 格式化月、日、时、分、秒
-    let o = {
-      'm+': date.getMonth() + 1,
-      'd+': date.getDate(),
-      'h+': date.getHours(),
-      'i+': date.getMinutes(),
-      's+': date.getSeconds(),
-    };
-    for (let k in o) {
-      if (new RegExp(`(${k})`).test(dateFormat)) {
-        // 取出对应的值
-        let str = o[k] + '';
-        /* 根据设置的格式，输出对应的字符
-         * 例如: 早上8时，hh => 08，h => 8
-         * 但是，当数字>=10时，无论格式为一位还是多位，不做截取，这是与年份格式化不一致的地方
-         * 例如: 下午15时，hh => 15, h => 15
-         */
-        dateFormat = dateFormat.replace(
-          RegExp.$1,
-          RegExp.$1.length === 1 ? str : this.padLeftZero(str),
-        );
+  }
+  return newDateFormat;
+};
+
+const FlipClock: FC = () => {
+  const flipperRefs = useRef<(FlipperInstance | null)[]>([]);
+  const previousStrRef = useRef<string[]>([]);
+
+  // 获取随机数字字符串
+  const getData = (): string[] => {
+    const randomNumber = Math.floor(Math.random() * 1000000) // 修正为6位数
+      .toString()
+      .padStart(6, '0'); // 修正为6位
+    return randomNumber.split('');
+  };
+
+  useEffect(() => {
+    const flipObjs = flipperRefs.current;
+
+    // 初始化数字
+    const init = () => {
+      const str = getData();
+      previousStrRef.current = str;
+      for (let i = 0; i < flipObjs.length; i++) {
+        flipObjs[i]?.setFront(str[i]);
       }
-    }
-    return dateFormat;
-  }
-  // 日期时间补零
-  padLeftZero(str) {
-    return ('00' + str).substr(str.length);
-  }
-}
+    };
+
+    // 开始计时
+    const run = () => {
+      const timer = setInterval(() => {
+        const newStr = getData();
+        for (let i = 0; i < flipObjs.length; i++) {
+          if (previousStrRef.current[i] === newStr[i]) {
+            continue;
+          }
+          flipObjs[i]?.flipDown(previousStrRef.current[i], newStr[i]);
+        }
+        previousStrRef.current = newStr;
+      }, 3000);
+      return timer;
+    };
+
+    init();
+    const timerId = run();
+
+    // 组件卸载时清除定时器
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
+
+  return (
+    <div className="FlipClock">
+      <Flipper ref={(el) => (flipperRefs.current[0] = el)} />
+      <Flipper ref={(el) => (flipperRefs.current[1] = el)} />
+      <Flipper ref={(el) => (flipperRefs.current[2] = el)} />
+      <em>,</em>
+      <Flipper ref={(el) => (flipperRefs.current[3] = el)} />
+      <Flipper ref={(el) => (flipperRefs.current[4] = el)} />
+      <Flipper ref={(el) => (flipperRefs.current[5] = el)} />
+    </div>
+  );
+};
+
 export default FlipClock;

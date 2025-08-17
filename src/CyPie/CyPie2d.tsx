@@ -1,61 +1,51 @@
+import React, { useEffect, useRef } from 'react';
 import ReactEcharts from 'echarts-for-react';
-import { Component } from 'react';
 
-class Index extends Component {
-  constructor() {
-    super();
-    // this.divRef = React.createRef();
-    this.resizeObserver = null;
-  }
+interface DataItem {
+  value: number;
+  name: string;
+  color?: string;
+}
 
-  componentDidMount() {
-    const div = this.divRef;
-    let main = this.mainRef;
-    // // 创建一个ResizeObserver实例并定义回调函数
-    // const resizeObserver = new ResizeObserver((entries) => {
-    //   for (const entry of entries) {
-    //     const { width, height } = entry.contentRect;
-    //     main.style.transform = `scale(1.1)`;
-    //     console.log(main, 19);
-    //     // main.style.transform = `scaleX(${width / 800}) scaleY(${height / 500})`;
-    //   }
-    // });
-    // // 开始监听div的尺寸变化
-    // resizeObserver.observe(div);
-    // this.resizeObserver = resizeObserver;
-    const myChart = this.echartRef.getEchartsInstance();
-    // 默认高亮
-    let index = 0; // 高亮索引
-    myChart.dispatchAction({
-      type: 'highlight',
-      seriesIndex: index,
-      dataIndex: index,
-    });
-    myChart.on('mouseover', function (e) {
-      if (e.dataIndex != index) {
-        myChart.dispatchAction({
-          type: 'downplay',
-          seriesIndex: 0,
-          dataIndex: index,
-        });
-      }
-    });
-    myChart.on('mouseout', function (e) {
-      index = e.dataIndex;
+interface IProps {
+  optionsData: DataItem[];
+  style?: React.CSSProperties;
+}
+
+const Index: React.FC<IProps> = ({ optionsData, style }) => {
+  const echartRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (echartRef.current) {
+      const myChart = echartRef.current.getEchartsInstance();
+      // 默认高亮
+      let index = 0; // 高亮索引
       myChart.dispatchAction({
         type: 'highlight',
-        seriesIndex: 0,
-        dataIndex: e.dataIndex,
+        seriesIndex: index,
+        dataIndex: index,
       });
-    });
-  }
+      myChart.on('mouseover', (e: any) => {
+        if (e.dataIndex !== index) {
+          myChart.dispatchAction({
+            type: 'downplay',
+            seriesIndex: 0,
+            dataIndex: index,
+          });
+        }
+      });
+      myChart.on('mouseout', (e: any) => {
+        index = e.dataIndex;
+        myChart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: e.dataIndex,
+        });
+      });
+    }
+  }, []);
 
-  componentWillUnmount() {
-    //卸载移除监听
-    // this.resizeObserver.disconnect();
-  }
-
-  getOption() {
+  const getOption = () => {
     let colorList = ['#00F9FF', '#1978E5', '#FFF67C', '#60B45E', '#BECDD0'];
     let colorListShadow = [
       'rgba(25,63,87,1)',
@@ -64,8 +54,7 @@ class Index extends Component {
       'rgba(94, 225, 204,.3)',
       'rgba(212,224,227,.1)',
     ];
-    let data = this.props.optionsData;
-    // color: ['#00F9FF', '#1978E5', '#FFF67C', '#60B45E', '#BECDD0'],
+    let data = optionsData || [];
     let outData = data.map((item, index) => {
       return {
         value: item.value,
@@ -114,9 +103,9 @@ class Index extends Component {
           },
         },
         data: data,
-        formatter: function (name) {
+        formatter: function (name: string) {
           let nameSpace = name?.length < 3 ? name + '   ' : name;
-          let value = data?.find((item) => item?.name == name).value;
+          let value = data?.find((item) => item?.name == name)?.value;
           let html = `  {name|${nameSpace}}   {value|${value}}`;
           var arr = [html];
           return arr.join('\n');
@@ -189,40 +178,25 @@ class Index extends Component {
       ],
     };
     return option;
-  }
+  };
 
-  onChartClick() {}
+  const onChartClick = () => {};
 
-  onChartLegendselectchanged() {}
+  const onChartLegendselectchanged = () => {};
 
-  render() {
-    const onEvents = {
-      click: this.onChartClick,
-      legendselectchanged: this.onChartLegendselectchanged,
-    };
-    return (
-      <div
-        ref={(e) => {
-          this.divRef = e;
-        }}
-      >
-        <div
-          ref={(e) => {
-            this.mainRef = e;
-          }}
-        >
-          <ReactEcharts
-            onEvents={onEvents}
-            ref={(e) => {
-              this.echartRef = e;
-            }}
-            option={this.getOption()}
-            style={{ ...this.props.style }}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+  const onEvents = {
+    click: onChartClick,
+    legendselectchanged: onChartLegendselectchanged,
+  };
+
+  return (
+    <ReactEcharts
+      onEvents={onEvents}
+      ref={echartRef}
+      option={getOption()}
+      style={{ ...style }}
+    />
+  );
+};
 
 export default Index;

@@ -1,236 +1,128 @@
+import { DragDropContext, Draggable, Droppable, DropResult } from '@hello-pangea/dnd';
 import * as VTable from '@visactor/vtable';
 import { downloadExcel, exportVTableToExcel } from '@visactor/vtable-export';
 import { Checkbox, Popover } from 'antd';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { useEffect, useRef, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+// 定义列和数据项的基本类型
+interface Column {
+  field: string;
+  title: string;
+  [key: string]: any;
+}
 
-function Index(props) {
+interface ColumnItem extends Column {
+  checked: boolean;
+}
+
+interface IProps<T> {
+  columns: Column[];
+  dataSource: T[];
+  options?: Partial<VTable.PivotTableConstructorOptions>;
+  theme?: keyof typeof VTable.themes;
+  onMount?: (
+    tableInstance: VTable.PivotTable,
+    exportExcel: (title: string, excelOption?: any) => void,
+  ) => void;
+  [key: string]: any; // 允许其他任意 props
+}
+
+const Index: FC<IProps<any>> = (props) => {
   const { columns, dataSource, options, theme = 'DEFAULT', onMount, ...rest } = props;
 
-  const [items, setItems] = useState(
-    columns?.map((item) => {
-      return {
+  console.log(dataSource, 111);
+
+  const [items, setItems] = useState<ColumnItem[]>(
+    () =>
+      columns?.map((item) => ({
         ...item,
         checked: true,
-      };
-    }),
+      })) || [],
   );
-  const reorder = (list, startIndex, endIndex) => {
-    const result = list;
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
 
-    return result;
-  };
+  const tableInstanceRef = useRef<VTable.PivotTable | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const onDragEnd = (result) => {
-    // 在这里处理拖放后的逻辑
-
-    // 实际应用中，你需要更新状态来反映新排列的items
-    console.log(57, result);
-
-    const { source, destination } = result;
-
-    // dropped outside the list
-    if (!destination) {
-      return;
-    }
-    const _items = reorder(items, source.index, destination.index);
-    const newState = [..._items];
-    setItems(newState);
-  };
-
-  const ref = useRef(null);
-  let tableInstance = null;
-  const exportExcel = async (
-    title,
-    excelOption = {
-      excelJSWorksheetCallback: (worksheet) => {
-        // worksheet.insertRow(1, ["2024年12月——2024年12月项目经营月报"]);
-        //
-        // worksheet.getCell("A1").font = {
-        //   name: "Comic Sans MS",
-        //   // family: 4,
-        //   size: 26,
-        //   bold: true,
-        // };
-
-        worksheet.views = [
-          {
-            state: 'frozen',
-            xSplit: 3,
-            ySplit: 2,
-          },
-        ];
-        worksheet.name = 'cy';
-        // worksheet.mergeCells("A1:K1");
-      },
-      ignoreIcon: true,
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { source, destination } = result;
+      if (!destination) {
+        return;
+      }
+      const reorder = (list: ColumnItem[], startIndex: number, endIndex: number) => {
+        const resultList = Array.from(list);
+        const [removed] = resultList.splice(startIndex, 1);
+        resultList.splice(endIndex, 0, removed);
+        return resultList;
+      };
+      const newItems = reorder(items, source.index, destination.index);
+      setItems(newItems);
     },
-  ) => {
-    if (tableInstance) {
-      downloadExcel(await exportVTableToExcel(tableInstance, excelOption), title);
-    }
-  };
+    [items],
+  );
 
-  //不知道为何这里不能用async
-  // Transforming async generator functions to the configured target environment ("chrome80", "es2015") is not supported yet
+  const exportExcel = useCallback(
+    async (
+      title: string,
+      excelOption: any = {
+        excelJSWorksheetCallback: (worksheet: any) => {
+          worksheet.views = [{ state: 'frozen', xSplit: 3, ySplit: 2 }];
+          worksheet.name = 'cy';
+        },
+        ignoreIcon: true,
+      },
+    ) => {
+      if (tableInstanceRef.current) {
+        const excelData = await exportVTableToExcel(tableInstanceRef.current, excelOption);
+        downloadExcel(excelData, title);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
-    const option = {
-      records: dataSource || [
-        { Category: '数量', 城市: '淮北', 项目数: 100, 季度: 1, 年份: 2023 },
-        { Category: '数量', 城市: '淮北', 项目数: 101, 季度: 2 },
-        { Category: '数量', 城市: '淮北', 项目数: 101, 季度: 3 },
-        { Category: '数量', 城市: '淮北', 项目数: 101, 季度: 4 },
+    if (!ref.current) return;
 
-        { Category: '数量', 城市: '徐州', 项目数: 100, 季度: 1 },
-        { Category: '数量', 城市: '徐州', 项目数: 101, 季度: 2 },
-        { Category: '数量', 城市: '徐州', 项目数: 101, 季度: 3 },
-        { Category: '数量', 城市: '徐州', 项目数: 101, 季度: 4 },
-      ],
-
-      indicators: [
-        {
-          indicatorKey: '科技创新',
-          title: '科技创新',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '人才引进',
-          title: '人才引进',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '高新技术产业',
-          title: '高新技术产业',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '交通网络',
-          title: '交通网络',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '供水供电',
-          title: '供水供电',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '公共设施',
-          title: '公共设施',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '通信网络',
-          title: '通信网络',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '人均GDP',
-          title: '人均GDP',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '就业率‌',
-          title: '就业率‌',
-          width: 'auto',
-        },
-
-        {
-          indicatorKey: '产业结构',
-          title: '产业结构',
-          width: 'auto',
-        },
-
-        {
-          indicatorKey: '文化教育',
-          title: '文化教育',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '医疗水平',
-          title: '医疗水平',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '社会福利',
-          title: '社会福利',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '治安指数',
-          title: '治安指数',
-          width: 'auto',
-        },
-
-        {
-          indicatorKey: '空气质量',
-          title: '空气质量',
-          width: 'auto',
-        },
-
-        {
-          indicatorKey: '水质指数',
-          title: '水质指数',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '噪音污染',
-          title: '噪音污染',
-          width: 'auto',
-        },
-        {
-          indicatorKey: '‌交通拥堵指数',
-          title: '‌交通拥堵指数',
-          width: 'auto',
-        },
-
-        {
-          indicatorKey: '‌生态保护‌',
-          title: '‌生态保护‌',
-          width: 'auto',
-        },
-      ],
+    const option: VTable.PivotTableConstructorOptions = {
+      records: dataSource,
+      indicators: items?.filter((e) => e.checked) as any[],
+      container: ref.current,
       corner: {
         titleOnDimension: 'row',
-        headerStyle: {
-          textStick: true,
-        },
+        headerStyle: {},
       },
-
       overscrollBehavior: 'none',
       widthMode: 'standard',
-
       keyboardOptions: {
         moveEditCellOnArrowKeys: true,
         copySelected: true,
         pasteValueToCell: true,
       },
-      editor: '', // 配置一个空的编辑器，以遍能粘贴到单元格中
-      transpose: false, //是否转置
+      editor: '',
       dragHeaderMode: 'all',
       select: {
-        highlightMode: 'cross', // 可以配置为'cross' 或者 'row' 或者 'column'
+        highlightMode: 'cross',
       },
-
       tooltip: {
-        isShowOverflowTextTooltip: true, //溢出文本提示
+        isShowOverflowTextTooltip: true,
       },
-      theme: VTable.themes[theme],
+      theme: (VTable.themes as any)[theme],
       ...options,
     };
-    tableInstance = new VTable.PivotTable(ref.current, option);
 
-    // const { CLICK_CELL } = VTable.ListTable.EVENT_TYPE;
-    // tableInstance.on(CLICK_CELL, (...args) => console.log(CLICK_CELL, args));
-    // tableInstance.on("mouseenter_cell", (...args) => console.log(args));
+    const tableInstance = new VTable.PivotTable(option);
+    tableInstanceRef.current = tableInstance;
 
     if (onMount) {
       onMount(tableInstance, exportExcel);
     }
-  }, [dataSource, items, options, theme]);
+
+    return () => {
+      tableInstance.release();
+      tableInstanceRef.current = null;
+    };
+  }, [dataSource, items, options, theme, onMount, exportExcel]);
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'flex-start', padding: '10px 0' }}>
@@ -238,22 +130,19 @@ function Index(props) {
           <span
             className={'fas fa-file-archive'}
             onClick={() => exportExcel('cy_test')}
-            style={{ fontSize: 22 }}
+            style={{ fontSize: 22, cursor: 'pointer' }}
           ></span>
         </Popover>
         <Popover
           content={
             <Checkbox.Group
-              value={items?.filter((e) => e?.checked).map((item) => item.field)}
+              value={items?.filter((e) => e.checked).map((item) => item.field)}
               onChange={(checkedValues) => {
-                console.log(checkedValues);
                 setItems(
-                  items?.map((item) => {
-                    return {
-                      ...item,
-                      checked: checkedValues.includes(item.field),
-                    };
-                  }),
+                  items.map((item) => ({
+                    ...item,
+                    checked: checkedValues.includes(item.field),
+                  })),
                 );
               }}
             >
@@ -269,11 +158,7 @@ function Index(props) {
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                             >
-                              <div
-                                style={{
-                                  fontSize: 18,
-                                }}
-                              >
+                              <div style={{ fontSize: 18, userSelect: 'none' }}>
                                 <i className="fas fa-list" style={{ marginRight: 10 }} />
                                 <Checkbox value={item.field}>{item.title}</Checkbox>
                               </div>
@@ -292,12 +177,15 @@ function Index(props) {
           title={'列设置'}
           trigger="click"
         >
-          <span className={'fas fa-cog'} style={{ fontSize: 22, marginLeft: 10 }}></span>
+          <span
+            className={'fas fa-cog'}
+            style={{ fontSize: 22, marginLeft: 10, cursor: 'pointer' }}
+          ></span>
         </Popover>
       </div>
       <div ref={ref} {...rest} />
     </div>
   );
-}
+};
 
 export default Index;

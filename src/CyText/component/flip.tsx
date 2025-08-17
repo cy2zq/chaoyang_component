@@ -3,98 +3,86 @@
  * @author： 兔子先生
  * @createDate: 2019-11-24
  */
-import { Component } from 'react';
-
+import React, { useState, forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
 import './index.less';
 
-class Flipper extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFlipping: false,
-      flipType: 'down',
-      frontTextFromData: 0,
-      backTextFromData: 1,
-      // frontTextFromData: props?.frontTextFromData || 0,
-      // backTextFromData: props?.backTextFromData || 1,
-      // duration: 600,
-    };
-  }
-
-  render() {
-    const { isFlipping, flipType, frontTextFromData, backTextFromData } = this.state;
-    return (
-      <div className={['M-Flipper', flipType, isFlipping ? 'go' : null].join(' ')}>
-        <div className={'digital front ' + this._textClass(frontTextFromData)}></div>
-        <div className={'digital back ' + this._textClass(backTextFromData)}></div>
-      </div>
-    );
-  }
-  // componentDidMount() {
-  //   this.props.onRef(this);
-  // }
-  // componentDidMount() {
-  //   this.flipDown(this.state?.frontTextFromData, this.state?.backTextFromData);
-  // }
-  test() {
-    console.log('test');
-  }
-  _textClass(number) {
-    return 'number' + number;
-  }
-  _flip(type, front, back) {
-    // 如果处于翻转中，则不执行
-    if (this.isFlipping) {
-      return false;
-    }
-    this.setState({
-      frontTextFromData: front,
-      backTextFromData: back,
-      // 根据传递过来的type设置翻转方向
-      flipType: type,
-      // 设置翻转状态为true
-      isFlipping: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        frontTextFromData: back,
-        isFlipping: false,
-      });
-    }, this.props.duration);
-  }
-  // 下翻牌
-  flipDown(front, back) {
-    this._flip('down', front, back);
-  }
-  // 上翻牌
-  flipUp(front, back) {
-    this._flip('up', front, back);
-  }
-  // 设置前牌文字
-  setFront(text) {
-    this.setState({
-      frontTextFromData: text,
-    });
-  }
-  // 设置后牌文字
-  setBack(text) {
-    this.setState({
-      backTextFromData: text,
-    });
-  }
+// 定义 Props 类型
+interface IProps {
+  frontText?: string | number;
+  backText?: string | number;
+  duration?: number;
 }
 
-// props默认值
-Flipper.defaultProps = {
-  // front paper text
-  // 前牌文字
-  frontText: 0,
-  // back paper text
-  // 后牌文字
-  backText: 1,
-  // flipping duration, please be consistent with the CSS animation-duration value.
-  // 翻牌动画时间，与CSS中设置的animation-duration保持一致
-  duration: 600,
-};
+// 定义暴露给父组件的 Ref 类型
+export interface FlipperInstance {
+  setFront: (text: string | number) => void;
+  flipDown: (front: string | number, back: string | number) => void;
+  flipUp: (front: string | number, back: string | number) => void;
+}
+
+const Flipper = forwardRef<FlipperInstance, IProps>(
+  ({ frontText: initialFrontText = 0, backText: initialBackText = 1, duration = 600 }, ref) => {
+    const [isFlipping, setIsFlipping] = useState(false);
+    const [flipType, setFlipType] = useState('down');
+    const [frontText, setFrontText] = useState(initialFrontText);
+    const [backText, setBackText] = useState(initialBackText);
+
+    const timer = useRef<NodeJS.Timeout | null>(null);
+
+    // 清理定时器以防组件卸载时内存泄漏
+    useEffect(() => {
+      return () => {
+        if (timer.current) {
+          clearTimeout(timer.current);
+        }
+      };
+    }, []);
+
+    const _textClass = (number: string | number) => {
+      return 'number' + number;
+    };
+
+    const _flip = (type: 'down' | 'up', front: string | number, back: string | number) => {
+      if (isFlipping) {
+        return;
+      }
+      setFrontText(front);
+      setBackText(back);
+      setFlipType(type);
+      setIsFlipping(true);
+
+      timer.current = setTimeout(() => {
+        setIsFlipping(false);
+        setFrontText(back);
+      }, duration);
+    };
+
+    // 使用 useImperativeHandle 暴露方法给父组件
+    useImperativeHandle(ref, () => ({
+      setFront: (text: string | number) => {
+        setFrontText(text);
+      },
+      flipDown: (front: string | number, back: string | number) => {
+        _flip('down', front, back);
+      },
+      flipUp: (front: string | number, back: string | number) => {
+        _flip('up', front, back);
+      },
+    }));
+
+    const containerClass = ['M-Flipper', flipType, isFlipping ? 'go' : ''].join(' ');
+    const frontClass = `digital front ${_textClass(frontText)}`;
+    const backClass = `digital back ${_textClass(backText)}`;
+
+    return (
+      <div className={containerClass}>
+        <div className={frontClass}></div>
+        <div className={backClass}></div>
+      </div>
+    );
+  },
+);
+
+Flipper.displayName = 'Flipper';
 
 export default Flipper;

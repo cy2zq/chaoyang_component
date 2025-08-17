@@ -5,7 +5,7 @@
  */
 import styled from '@emotion/styled';
 import React from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import Column from './column';
 import reorder, { reorderQuoteMap } from './reorder';
 const ParentContainer = styled.div`
