@@ -32,16 +32,6 @@ const BarList = (props) => {
       // animationEasing: animationEasingList[getRandomNumber(1, 30)],
       backgroundColor: 'transparent',
       color: ['#07B0F1', '#D0DEEE'],
-      // dataZoom: [
-      //   {
-      //     type: "inside",
-      //     show: false,
-      //     startValue: 0,
-      //     endValue: 7,
-      //     minValueSpan: 7,
-      //     maxValueSpan: 7,
-      //   },
-      // ],
 
       grid: {
         left: '5',
@@ -240,7 +230,25 @@ const BarList = (props) => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <ReactEcharts ref={ref} option={option} style={props.style} />;
+  useEffect(() => {
+    // 强制 ECharts 实例在组件挂载或数据更新后重新计算尺寸
+    if (ref.current) {
+      const echartInstance = ref.current.getEchartsInstance();
+      setTimeout(() => {
+        echartInstance.resize();
+      }, 100); // 使用一个小的延迟确保容器尺寸已经计算完毕
+    }
+  }, [cdata.data]);
+
+  return (
+    <ReactEcharts
+      ref={ref}
+      option={option}
+      notMerge={true}
+      lazyUpdate={true}
+      style={{ ...props.style, width: '100%' }}
+    />
+  );
 };
 
 export default BarList;

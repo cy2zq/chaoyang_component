@@ -26,29 +26,6 @@ export default () => (
 );
 ```
 
-## 发光-css
-
-```jsx
-import { CyWoodBtn } from 'chaoyang_component';
-import { Row, Col } from 'antd';
-
-export default () => (
-  <div
-    style={
-      {
-        // background:'white',
-      }
-    }
-  >
-    <CyWoodBtn
-      type={`cy05`}
-      // text={<div style={{width:60,textAlign:'center'}}>测试</div>}
-      text={`心有猛虎，细嗅蔷薇`}
-    />
-  </div>
-);
-```
-
 ## 圣诞-纯 css
 
 ```jsx
@@ -64,30 +41,6 @@ export default () => (
     }
   >
     <CyWoodBtn type={`cy06`} text={`心有猛虎，细嗅蔷薇`} desc={`7521`} />
-  </div>
-);
-```
-
-## 纯 css 按钮 CyTag
-
-```jsx
-import { CyTag } from 'chaoyang_component';
-import { Row, Col } from 'antd';
-
-export default () => (
-  <div
-    style={{
-      padding: 24,
-      // background:'radial-gradient(circle at 50% 0%,rgb(67, 54, 74) 16.4%,rgb(47, 48, 67) 68.2%,rgb(27, 23, 36) 99.1%)'
-    }}
-  >
-    <Row gutter={[48, 24]}>
-      {[45, 35, 14, 1, 2, 3, 18, 19, 20, 34, 35, 36]?.map((item, index) => (
-        <Col span={6} key={index}>
-          <CyTag type={`cy0${item}`} text={`cy0${item}`} />
-        </Col>
-      ))}
-    </Row>
   </div>
 );
 ```

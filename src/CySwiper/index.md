@@ -2,7 +2,7 @@
 title: 走马灯
 group:
   title: 其他
-order: 1
+order: 90
 ---
 
 # 轮播学习
@@ -143,7 +143,6 @@ export default () => (
     type={'chart'}
     data={data}
     style={{
-      width: 850,
       height: 500,
     }}
   />

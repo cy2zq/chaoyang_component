@@ -29,7 +29,7 @@ const CarouselList = (props) => {
         // autoplay: false,
         autoplay: {
           //开启自动切换
-          delay: 10, //自动切换的时间间隔
+          delay: 2000, //自动切换的时间间隔
           stopOnLastSlide: false, //当切换到最后一个slide时停止自动切换
           disableOnInteraction: false, //用户操作swiper之后，是否停止自动切换效果
         },
@@ -62,7 +62,7 @@ const CarouselList = (props) => {
           {data?.map((item) => {
             var randomInt = Math.floor(Math.random() * 101);
 
-            let left = (randomInt * 40) / 5 + 8;
+            let left = randomInt;
             return (
               <div
                 className="swiper-slide"
@@ -70,19 +70,6 @@ const CarouselList = (props) => {
                   padding: '16px 0 16px 24px',
                 }}
               >
-                <div
-                  style={{
-                    width: 12,
-                    height: 12,
-                    borderRadius: 12,
-                    background: 'white',
-                    left: left + 'px',
-                    position: 'absolute',
-                    top: 53,
-                    zIndex: 999999,
-                    boxShadow: '0px 0px 12px  #CCEAFF',
-                  }}
-                />
                 <div
                   style={{
                     display: 'flex',
@@ -95,14 +82,31 @@ const CarouselList = (props) => {
                   <span>{item}</span>
                   <span style={{ color: '#11d8ff' }}>{randomInt}%</span>
                 </div>
-                <Progress
-                  style={{ width: '100%' }}
-                  strokeColor={twoColors}
-                  percent={randomInt}
-                  format={() => null}
-                  // status="active"
-                  trailColor={'rgba(80, 121, 150, 0.6)'}
-                />
+                {/* This container creates a shared positioning context for the dot and the progress bar. */}
+                <div style={{ position: 'relative', paddingRight: '16px' }}>
+                  <div
+                    style={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: 12,
+                      background: 'white',
+                      left: `${left}%`,
+                      position: 'absolute',
+                      top: '50%',
+                      zIndex: 99,
+                      boxShadow: '0px 0px 12px #CCEAFF',
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                  />
+                  <Progress
+                    style={{ width: '100%' }}
+                    strokeColor={twoColors}
+                    percent={randomInt}
+                    format={() => null}
+                    // status="active"
+                    trailColor={'rgba(80, 121, 150, 0.6)'}
+                  />
+                </div>
               </div>
             );
           })}

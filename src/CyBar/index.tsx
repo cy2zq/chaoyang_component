@@ -1,10 +1,11 @@
 import * as echarts from 'echarts';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import ReactEcharts from 'echarts-for-react';
 
 const BarList = (props) => {
   const [option, setOption] = useState({});
+  const echartRef = useRef(null);
   let { height, yLabel } = props;
   let showLabel = yLabel == 'value' ? '{value}' : '{value} %';
 
@@ -23,7 +24,7 @@ const BarList = (props) => {
       tooltip: {
         trigger: 'axis',
         axisPointer: { type: 'shadow' },
-        valueFormatter: (value) => '$' + value.toFixed(2),
+        valueFormatter: (value) => `${value.toFixed(2)}`,
       },
       xAxis: {
         type: 'category',
@@ -117,9 +118,28 @@ const BarList = (props) => {
       ],
     };
     setOption(optionNew);
-  }, [props?.name]);
+  }, [props.data]);
 
-  return <ReactEcharts option={option} theme="Imooc" {...props} />;
+  useEffect(() => {
+    // 强制 ECharts 实例在组件挂载或数据更新后重新计算尺寸
+    if (echartRef.current) {
+      const echartInstance = echartRef.current.getEchartsInstance();
+      setTimeout(() => {
+        echartInstance.resize();
+      }, 100); // 使用一个小的延迟确保容器尺寸已经计算完毕
+    }
+  }, [props.data]);
+
+  return (
+    <ReactEcharts
+      ref={echartRef}
+      option={option}
+      notMerge={true}
+      lazyUpdate={true}
+      style={{ height: height || '100%', width: '100%' }}
+      {...props}
+    />
+  );
 };
 
 export default BarList;

@@ -158,21 +158,6 @@ function setSpot() {
   return scatterData;
 }
 let option = {
-  // graphic: {
-  //   type: 'image',
-  //   id: 'myImage',
-  //   left: '32%',
-  //   top: '60',
-  //   z: -100,
-  //   bounding: 'raw',
-  //   origin: [0, 0], // 图片的中心位置
-  //   style: {
-  //     image: img, // 图片的URL
-  //     width: 360,
-  //     height: 360,
-  //     opacity: 1,
-  //   },
-  // },
   polar: {
     center: ['50%', '40%'],
     radius: '40%',
@@ -352,12 +337,6 @@ let option = {
           borderColor: 'rgb(97,65,81)',
         },
       },
-      // backgroundColor: {
-      //   image: require("@/assets/images/test.png"),
-      // },
-      // borderColor: "#2EB3F0",
-      // borderWidth: 1,
-      // padding: [0, 0, 5, 10],
     },
     axisLine: {
       show: true,
@@ -448,8 +427,8 @@ export default () => (
     style={{
       // background: '#0a264d',
       height: 600,
-      width: 800,
-      minWidth: 800,
+      // width: 800,
+      // minWidth: 800,
     }}
   />
 );
@@ -494,7 +473,7 @@ export default () => (
     style={{
       // background: '#0a264d',
       height: 300,
-      width: 800,
+      // width: 800,
     }}
   />
 );
@@ -643,7 +622,6 @@ export default () => (
     style={{
       // background: '#0a264d',
       height: 300,
-      width: 800,
     }}
   />
 );
