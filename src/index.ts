@@ -16,7 +16,6 @@ export { default as CySwiper } from './CySwiper';
 export { default as CyText } from './CyText';
 export { default as CyFlip } from './CyText/component/clock';
 export { default as CyText1 } from './CyText/CyText1';
-export { default as CyTypewriter } from './CyTypewriter';
 export { default as ModalBg } from './drag-modal/ModalBg';
 
 //表格-基于@visactor/vtable
