@@ -191,3 +191,523 @@
     }
   }
 }
+
+// ====== 自定义轮播特效：时间切片 / 波纹涟漪 ======
+.cy-custom-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+
+  .cy-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+
+  // ---- 时间切片：底层底图 ----
+  .cy-base-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // ---- 时间切片：切片层 ----
+  .cy-slice-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .cy-slice {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    will-change: transform, opacity;
+
+    img {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // ---- 时间切片：扫描线 ----
+  .cy-scanline {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &.active {
+      opacity: 1;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.6) 20%,
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(0, 255, 255, 0.6) 80%,
+        transparent 100%
+      );
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.2);
+      animation: cy-scan-move 1.2s linear forwards;
+    }
+  }
+
+  // ---- 波纹涟漪：canvas ----
+  &.cy-ripple {
+    box-shadow: 0 10px 40px -5px rgba(0, 100, 200, 0.2);
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &.cy-time-slice {
+    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.5);
+  }
+
+  // ---- 左右切换按钮 ----
+  .cy-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+    user-select: none;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    &.cy-prev {
+      left: 16px;
+    }
+
+    &.cy-next {
+      right: 16px;
+    }
+  }
+
+  &.cy-time-slice .cy-nav-btn:hover {
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  }
+
+  &.cy-ripple .cy-nav-btn:hover {
+    background: rgba(40, 100, 200, 0.2);
+    border-color: rgba(100, 180, 255, 0.5);
+    box-shadow: 0 0 20px rgba(60, 140, 255, 0.2);
+  }
+
+  // ---- 指示器 ----
+  .cy-indicators {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .cy-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+
+    &.active {
+      width: 24px;
+      border-radius: 4px;
+    }
+  }
+
+  &.cy-time-slice .cy-indicator.active {
+    background: rgba(0, 255, 255, 0.9);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+  }
+
+  &.cy-ripple .cy-indicator.active {
+    background: rgba(100, 180, 255, 0.9);
+    box-shadow: 0 0 8px rgba(60, 140, 255, 0.5);
+  }
+
+  // ---- 矩阵代码雨 / 像素雨：canvas ----
+  &.cy-matrix-rain {
+    box-shadow: 0 0 40px rgba(0, 255, 70, 0.12);
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &.cy-matrix-rain .cy-nav-btn {
+    border-color: rgba(0, 255, 70, 0.25);
+    color: #0f0;
+    font-family: ui-monospace, monospace;
+
+    &:hover {
+      background: rgba(0, 255, 70, 0.12);
+      border-color: rgba(0, 255, 70, 0.5);
+      box-shadow: 0 0 20px rgba(0, 255, 70, 0.2);
+    }
+  }
+
+  &.cy-matrix-rain .cy-indicator.active {
+    background: rgba(0, 255, 70, 0.9);
+    box-shadow: 0 0 8px rgba(0, 255, 70, 0.45);
+  }
+
+  &.cy-pixel-rain {
+    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.5);
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &.cy-pixel-rain .cy-nav-btn {
+    border-color: rgba(0, 200, 150, 0.25);
+
+    &:hover {
+      background: rgba(0, 200, 150, 0.15);
+      border-color: rgba(0, 200, 150, 0.5);
+      box-shadow: 0 0 20px rgba(0, 200, 150, 0.2);
+    }
+  }
+
+  &.cy-pixel-rain .cy-indicator.active {
+    background: rgba(0, 220, 160, 0.9);
+    box-shadow: 0 0 8px rgba(0, 200, 150, 0.45);
+  }
+
+  // ---- 专辑列滚动 ----
+  &.cy-album-scroll {
+    background: #050505;
+    box-shadow:
+      0 40px 90px rgba(0, 0, 0, 0.55),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+    .cy-album-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .cy-album-wrapper {
+      --album-window-w: min(92%, 820px);
+      --album-tile-h: 112px;
+      --album-row-gap: 6px;
+      --album-col-gap: 5px;
+      --album-clip-h: min(72vh, 420px);
+      width: var(--album-window-w);
+      height: var(--album-clip-h);
+      perspective: 1000px;
+      position: relative;
+      overflow: clip clip;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #050505;
+    }
+
+    .cy-album-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -12%;
+      z-index: 3;
+      pointer-events: none;
+      background: radial-gradient(
+        circle at 50% 50%,
+        transparent 22%,
+        rgba(0, 0, 0, 0.45) 68%,
+        rgba(0, 0, 0, 0.82) 100%
+      );
+    }
+
+    .cy-album-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 52% 45%, rgba(255, 255, 255, 0.14), transparent 42%),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent 30%);
+    }
+
+    .cy-album-columns {
+      position: absolute;
+      width: 175%;
+      top: -100%;
+      right: -90%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      transform: rotateX(45deg) rotateY(20deg) rotate(-25deg) translate3d(-6em, 8em, 8em);
+      transform-origin: 50%;
+      transform-style: preserve-3d;
+      z-index: 1;
+      mask-image: linear-gradient(
+        #0000 0%,
+        #00000005 2.3%,
+        #00000009 2.57%,
+        #00000013 3.65%,
+        #00000026 5.25%,
+        #0000004d 7.5%,
+        #000 15%
+      );
+      -webkit-mask-image: linear-gradient(
+        #0000 0%,
+        #00000005 2.3%,
+        #00000009 2.57%,
+        #00000013 3.65%,
+        #00000026 5.25%,
+        #0000004d 7.5%,
+        #000 15%
+      );
+    }
+
+    .cy-album-column {
+      display: flex;
+      flex-direction: column;
+      margin-left: var(--album-col-gap);
+      margin-right: var(--album-col-gap);
+    }
+
+    .cy-album-column.cy-album-down {
+      animation: cy-album-scroll-down 28s linear infinite alternate;
+    }
+
+    .cy-album-column.cy-album-up {
+      animation: cy-album-scroll-up 28s linear infinite alternate;
+    }
+
+    .cy-album-column.cy-album-up:hover,
+    .cy-album-column.cy-album-down:hover {
+      animation-play-state: paused;
+    }
+
+    .cy-album-column:nth-child(1),
+    .cy-album-column:nth-child(4) {
+      padding-top: 56px;
+    }
+
+    .cy-album-column:nth-child(2),
+    .cy-album-column:nth-child(5) {
+      padding-top: 28px;
+    }
+
+    .cy-album-tile {
+      height: var(--album-tile-h);
+      margin-bottom: var(--album-row-gap);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 4px;
+      flex-shrink: 0;
+      transition:
+        transform 0.28s ease,
+        filter 0.28s ease,
+        box-shadow 0.28s ease;
+      transform-origin: center;
+    }
+
+    .cy-album-column:hover > .cy-album-tile {
+      filter: brightness(0.72) saturate(0.78);
+    }
+
+    .cy-album-column:hover > .cy-album-tile:hover {
+      transform: scale(1.08);
+      filter: brightness(1.05) saturate(1.08);
+      box-shadow:
+        0 18px 28px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.35);
+      z-index: 4;
+    }
+  }
+
+  &.cy-album-scroll .cy-nav-btn:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
+  }
+
+  &.cy-album-scroll .cy-indicator.active {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+  }
+
+  // ---- 环轨画廊 ----
+  &.cy-ring-gallery {
+    background: #fff3ed;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+
+    .cy-ring-stage {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .cy-ring-fallback {
+      padding: 12px;
+    }
+
+    .cy-ring-single {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 7 / 10;
+      object-fit: cover;
+      border-radius: 1.2em;
+      box-shadow: 0 0.75em 1.8em rgba(0, 0, 0, 0.18);
+    }
+
+    .cy-ring-scene {
+      perspective: 35em;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 20% 80%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 20% 80%, transparent);
+      overflow: hidden;
+      width: min(100%, 900px);
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    .cy-ring-a3d {
+      display: grid;
+      place-self: center;
+      transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      grid-template: 1fr / 1fr;
+    }
+
+    .cy-ring-card {
+      grid-area: 1 / 1;
+      height: auto;
+      aspect-ratio: 7 / 10;
+      object-fit: cover;
+      border-radius: 1.4em;
+      backface-visibility: hidden;
+      box-shadow: 0 0.75em 1.8em rgba(0, 0, 0, 0.18);
+      place-self: center;
+    }
+  }
+
+  &.cy-ring-gallery .cy-nav-btn {
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #333;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &.cy-ring-gallery .cy-indicator.active {
+    background: rgba(80, 80, 80, 0.9);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes cy-album-scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(
+      calc(
+        -1 *
+          (
+            (var(--album-tile-h) + var(--album-row-gap)) * var(--cy-album-n-rows, 10) -
+              var(--album-clip-h, 420px)
+          )
+      )
+    );
+  }
+}
+
+@keyframes cy-album-scroll-down {
+  0% {
+    transform: translateY(
+      calc(
+        -1 *
+          (
+            (var(--album-tile-h) + var(--album-row-gap)) * var(--cy-album-n-rows, 10) -
+              var(--album-clip-h, 420px)
+          )
+      )
+    );
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes cy-scan-move {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}

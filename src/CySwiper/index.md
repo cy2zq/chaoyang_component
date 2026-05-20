@@ -228,7 +228,141 @@ export default () => {
 
 ## 切换效果
 
-CySwiper 支持多种切换效果，包括 `slide`（默认）、`fade`、`cube`、`coverflow`、`flip`、`creative`、`cards`。
+CySwiper 支持多种切换效果：
+
+- Swiper 内置：`slide`（默认）、`fade`、`cube`、`coverflow`、`flip`、`creative`、`cards`
+- 自定义高级特效：`timeSlice`（时间切片）、`ripple`（波纹涟漪）、`matrixRain` / `codeRain`（矩阵代码雨）、`pixelRain`（像素雨）、`albumScroll`（专辑列滚动）、`ringGallery`（环轨画廊）
+
+> 提示：使用以上自定义特效时，组件会自动从每个 slide 的子节点中递归查找第一个 `<img>` 作为轮播图片；也可以通过 `images` 属性直接传入图片列表。
+
+### TimeSlice 时间切片效果
+
+切换时，当前图片会被分割为多条水平切片，伴随扫描线「拆解飞散」，新图片从底层显现。
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper effect="timeSlice" height={420}>
+    <div>
+      <img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} />
+    </div>
+    <div>
+      <img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} />
+    </div>
+    <div>
+      <img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} />
+    </div>
+  </CySwiper>
+);
+```
+
+### Ripple 波纹涟漪效果
+
+切换时基于 Canvas 的水波纹式像素位移过渡（与参考 HTML 一致），支持优先像素算法与软边备用过渡。
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper effect="ripple" height={420}>
+    <div>
+      <img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} />
+    </div>
+    <div>
+      <img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} />
+    </div>
+    <div>
+      <img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} />
+    </div>
+  </CySwiper>
+);
+```
+
+### MatrixRain / CodeRain 矩阵代码雨
+
+竖直「代码雨」扫过画面，尾迹揭示下一张图；`codeRain` 与 `matrixRain` 为同一效果。
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper effect="matrixRain" height={420} autoplaySpeed={5000}>
+    <div><img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} /></div>
+  </CySwiper>
+);
+```
+
+### PixelRain 像素雨
+
+旧图以列波形依次溶解，像素块下落，新图在下方渐显。
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper effect="pixelRain" height={420}>
+    <div><img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} /></div>
+  </CySwiper>
+);
+```
+
+### AlbumScroll 专辑列滚动
+
+五列 3D 倾斜构图，列内图片上下无限滚动（悬停可暂停）；翻页与指示器会轮换各列使用的图片组合。
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper effect="albumScroll" height={460} autoplaySpeed={6000}>
+    <div><img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} /></div>
+  </CySwiper>
+);
+```
+
+### RingGallery 环轨画廊
+
+3D 环形展台，多张卡片围成一圈，左右切换平滑旋转；不足 6 张时自动补全，始终保持多卡可见。
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper effect="ringGallery" height={480} autoplaySpeed={3500}>
+    <div><img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/1.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/2.jpg" style={{ width: '100%' }} /></div>
+    <div><img src="https://images.cy-zq.cn/images/3.jpg" style={{ width: '100%' }} /></div>
+  </CySwiper>
+);
+```
+
+### 通过 images 属性传入
+
+```jsx
+import { CySwiper } from 'chaoyang_component';
+
+export default () => (
+  <CySwiper
+    effect="timeSlice"
+    height={420}
+    images={[
+      { src: 'https://images.cy-zq.cn/images/1.jpg', alt: '图片1' },
+      { src: 'https://images.cy-zq.cn/images/2.jpg', alt: '图片2' },
+      { src: 'https://images.cy-zq.cn/images/3.jpg', alt: '图片3' },
+    ]}
+  />
+);
+```
 
 ### Flip 效果
 
@@ -440,16 +574,18 @@ export default () => {
 
 ## API
 
-| 参数           | 说明                                                                       | 类型              | 默认值       |
-| -------------- | -------------------------------------------------------------------------- | ----------------- | ------------ |
-| afterChange    | 切换面板的回调                                                             | function(current) | -            |
-| autoplay       | 是否自动切换                                                               | boolean           | true         |
-| autoplaySpeed  | 自动切换的时间间隔，单位毫秒                                               | number            | 3000         |
-| dotPosition    | 面板指示点位置，可选 `top` `bottom` `left` `right`                         | string            | `right`      |
-| dots           | 是否显示面板指示点                                                         | boolean           | true         |
-| paginationType | 分页器类型，可选 `bullets` `fraction` `progressbar` `custom`               | string            | `bullets`    |
-| effect         | 动画效果，可选 `slide` `fade` `cube` `coverflow` `flip` `creative` `cards` | string            | `slide`      |
-| direction      | 轮播方向，可选 `horizontal` `vertical`                                     | string            | `horizontal` |
-| mouseWheel     | 是否支持鼠标滚轮                                                           | boolean           | true         |
-| style          | 容器样式                                                                   | CSSProperties     | -            |
-| height         | 容器高度                                                                   | string \| number  | 400          |
+| 参数           | 说明                                                                                                  | 类型                          | 默认值       |
+| -------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------- | ------------ |
+| afterChange    | 切换面板的回调                                                                                        | function(current)             | -            |
+| autoplay       | 是否自动切换                                                                                          | boolean                       | true         |
+| autoplaySpeed  | 自动切换的时间间隔，单位毫秒                                                                          | number                        | 3000         |
+| dotPosition    | 面板指示点位置，可选 `top` `bottom` `left` `right`（仅 Swiper 内置效果生效）                          | string                        | `right`      |
+| dots           | 是否显示面板指示点                                                                                    | boolean                       | true         |
+| paginationType | 分页器类型，可选 `bullets` `fraction` `progressbar` `custom`                                          | string                        | `bullets`    |
+| effect         | 动画效果：Swiper 内置 `slide` `fade` `cube` `coverflow` `flip` `creative` `cards`；自定义 `timeSlice` `ripple` `matrixRain` `codeRain` `pixelRain` `albumScroll` `ringGallery` | string                        | `slide`      |
+| direction      | 轮播方向，可选 `horizontal` `vertical`                                                                | string                        | `horizontal` |
+| mouseWheel     | 是否支持鼠标滚轮                                                                                      | boolean                       | true         |
+| style          | 容器样式                                                                                              | CSSProperties                 | -            |
+| height         | 容器高度                                                                                              | string \| number              | 400          |
+| images         | 自定义特效专用图片列表，不传时会从 children 中自动提取每张 slide 的第一个 img                         | `{ src: string; alt?: string }[]` | -            |
+| navButtons     | 自定义特效下是否显示左右切换按钮                                                                      | boolean                       | true         |

@@ -1,4 +1,5 @@
-import React, { type FC, ReactNode, useEffect, useRef } from 'react';
+import React, { type FC, ReactNode, useEffect, useMemo, useRef } from 'react';
+import CustomCarousel, { type CustomCarouselEffect, type ImageItem } from './CustomCarousel';
 import './index.less';
 
 // 定义数据项和 Props 的类型
@@ -20,8 +21,26 @@ interface IProps {
   dots?: boolean;
   /** 分页器类型，可选 'bullets', 'fraction', 'progressbar', 'custom' */
   paginationType?: 'bullets' | 'fraction' | 'progressbar' | 'custom';
-  /** 动效类型，可选 'slide', 'fade', 'cube', 'coverflow', 'flip', 'creative', 'cards' */
-  effect?: 'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'creative' | 'cards';
+  /**
+   * 动效类型
+   * - Swiper 内置：'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'creative' | 'cards'
+   * - 自定义：'timeSlice' | 'ripple' | 'matrixRain' | 'codeRain'（同 matrixRain）| 'pixelRain' | 'albumScroll' | 'ringGallery'
+   */
+  effect?:
+    | 'slide'
+    | 'fade'
+    | 'cube'
+    | 'coverflow'
+    | 'flip'
+    | 'creative'
+    | 'cards'
+    | 'timeSlice'
+    | 'ripple'
+    | 'matrixRain'
+    | 'codeRain'
+    | 'pixelRain'
+    | 'albumScroll'
+    | 'ringGallery';
   /** 轮播方向，可选 'horizontal', 'vertical' */
   direction?: 'horizontal' | 'vertical';
   /** 是否支持鼠标滚轮 */
@@ -32,7 +51,46 @@ interface IProps {
   height?: string | number;
   /** 子元素 */
   children?: ReactNode;
+  /**
+   * 自定义特效专用：直接传入图片列表。
+   * 不传时，会自动从 children 中递归查找每张 slide 的第一个 <img> 标签。
+   */
+  images?: ImageItem[];
+  /** 自定义特效下是否显示左右切换按钮，默认显示 */
+  navButtons?: boolean;
 }
+
+// 在 React 子节点树中递归查找第一个 <img>，用于自定义特效自动提取图片
+const findFirstImage = (node: ReactNode): ImageItem | null => {
+  if (!React.isValidElement(node)) return null;
+  const element = node as React.ReactElement<any>;
+  if (element.type === 'img') {
+    const src = element.props?.src;
+    if (typeof src === 'string') {
+      return { src, alt: element.props?.alt };
+    }
+    return null;
+  }
+  const childChildren = element.props?.children;
+  if (Array.isArray(childChildren)) {
+    for (const c of childChildren) {
+      const found = findFirstImage(c);
+      if (found) return found;
+    }
+    return null;
+  }
+  if (childChildren) return findFirstImage(childChildren);
+  return null;
+};
+
+const extractImagesFromChildren = (children: ReactNode): ImageItem[] => {
+  const result: ImageItem[] = [];
+  React.Children.forEach(children, (child) => {
+    const found = findFirstImage(child);
+    if (found) result.push(found);
+  });
+  return result;
+};
 
 // 动态加载Swiper脚本和样式
 const loadSwiperResources = () => {
@@ -76,11 +134,26 @@ const CySwiper: FC<IProps> = ({
   style,
   height,
   children,
+  images,
+  navButtons = true,
 }) => {
   const swiperContainerRef = useRef<HTMLDivElement>(null);
   const swiperInstanceRef = useRef<any>(null);
 
+  const CUSTOM_EFFECTS = new Set<string>([
+    'timeSlice',
+    'ripple',
+    'matrixRain',
+    'codeRain',
+    'pixelRain',
+    'albumScroll',
+    'ringGallery',
+  ]);
+  const isCustomEffect = CUSTOM_EFFECTS.has(effect);
+
   useEffect(() => {
+    if (isCustomEffect) return; // 自定义特效不走 Swiper
+
     // 加载Swiper资源
     loadSwiperResources().then(() => {
       if (!swiperContainerRef.current || !window.Swiper) return;
@@ -265,6 +338,7 @@ const CySwiper: FC<IProps> = ({
     dotPosition,
     dots,
     effect,
+    isCustomEffect,
     mouseWheel,
     paginationType,
   ]);
@@ -273,6 +347,34 @@ const CySwiper: FC<IProps> = ({
     height: height || 400,
     ...style,
   };
+
+  // 自定义特效分支：使用独立的 CustomCarousel 组件
+  // 用 useMemo 缓存图片列表，避免每次渲染都产生新数组、导致 CustomCarousel 内部反复重新加载图片
+  const finalImages = useMemo<ImageItem[]>(() => {
+    if (images && images.length > 0) return images;
+    return extractImagesFromChildren(children);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    images,
+    // children 是 ReactNode，引用变化即视为变化
+    children,
+  ]);
+
+  if (isCustomEffect) {
+    return (
+      <CustomCarousel
+        effect={effect as CustomCarouselEffect}
+        images={finalImages}
+        autoplay={autoplay}
+        autoplaySpeed={autoplaySpeed}
+        height={height || 400}
+        dots={dots}
+        navButtons={navButtons}
+        afterChange={afterChange}
+        style={style}
+      />
+    );
+  }
 
   return (
     <div className="cy-swiper-container" style={containerStyle}>

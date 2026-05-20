@@ -146,3 +146,171 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* ====== 自定义轮播特效：时间切片 / 波纹涟漪 ====== */
+.cy-custom-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+.cy-custom-carousel .cy-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+.cy-custom-carousel .cy-base-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.cy-custom-carousel .cy-base-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cy-custom-carousel .cy-slice-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.cy-custom-carousel .cy-slice {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+.cy-custom-carousel .cy-slice img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+}
+.cy-custom-carousel .cy-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cy-custom-carousel .cy-scanline.active {
+  opacity: 1;
+}
+.cy-custom-carousel .cy-scanline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 255, 0.6) 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(0, 255, 255, 0.6) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.2);
+  animation: cy-scan-move 1.2s linear forwards;
+}
+.cy-custom-carousel.cy-ripple {
+  box-shadow: 0 10px 40px -5px rgba(0, 100, 200, 0.2);
+}
+.cy-custom-carousel.cy-ripple canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.cy-custom-carousel.cy-time-slice {
+  box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.5);
+}
+.cy-custom-carousel .cy-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+  user-select: none;
+}
+.cy-custom-carousel .cy-nav-btn:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+.cy-custom-carousel .cy-nav-btn.cy-prev {
+  left: 16px;
+}
+.cy-custom-carousel .cy-nav-btn.cy-next {
+  right: 16px;
+}
+.cy-custom-carousel.cy-time-slice .cy-nav-btn:hover {
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+.cy-custom-carousel.cy-ripple .cy-nav-btn:hover {
+  background: rgba(40, 100, 200, 0.2);
+  border-color: rgba(100, 180, 255, 0.5);
+  box-shadow: 0 0 20px rgba(60, 140, 255, 0.2);
+}
+.cy-custom-carousel .cy-indicators {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.cy-custom-carousel .cy-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+}
+.cy-custom-carousel .cy-indicator.active {
+  width: 24px;
+  border-radius: 4px;
+}
+.cy-custom-carousel.cy-time-slice .cy-indicator.active {
+  background: rgba(0, 255, 255, 0.9);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+.cy-custom-carousel.cy-ripple .cy-indicator.active {
+  background: rgba(100, 180, 255, 0.9);
+  box-shadow: 0 0 8px rgba(60, 140, 255, 0.5);
+}
+
+@keyframes cy-scan-move {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
